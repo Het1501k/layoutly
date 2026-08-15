@@ -1,0 +1,2378 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   LAYOUTLY
+   PERFORMANCE-FIRST GLOBAL CSS
+   Dark Forest / Blue-Green
+========================================================= */
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+@layer base {
+  html {
+    background: #030605;
+
+    /* Locomotive controls smooth scrolling */
+    scroll-behavior: auto;
+
+    /* Hide browser scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* Better rendering */
+    text-rendering: optimizeLegibility;
+  }
+
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  body {
+    margin: 0;
+    background: #030605;
+    color: #dce7e1;
+
+    @apply antialiased overflow-x-hidden;
+
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /*
+      Prevent browser from trying to overscroll
+      in strange ways while Locomotive controls scroll.
+    */
+    overscroll-behavior-x: none;
+  }
+
+  body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /*
+    Prevent media from causing horizontal overflow.
+  */
+  img,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  /*
+    Don't let huge images cause accidental layout shifts.
+  */
+  img,
+  video {
+    vertical-align: middle;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(73, 125, 101, 0.35);
+    color: #eef5f1;
+  }
+}
+
+
+/* =========================================================
+   PERFORMANCE UTILITIES
+========================================================= */
+
+@layer utilities {
+
+  /*
+    Hide scrollbar but keep scrolling enabled.
+  */
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+
+  /*
+    Browser can skip rendering content outside viewport.
+    Use on large sections below the hero.
+  */
+
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 600px;
+  }
+
+
+  /*
+    Lightweight paint isolation.
+  */
+
+  .content-isolate {
+    contain: layout paint;
+  }
+
+
+  /*
+    Only use this on elements that are actually
+    being transformed by JS/CSS animation.
+  */
+
+  .gpu {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+
+  /*
+    Disable expensive effects when needed.
+  */
+
+  .no-blur {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+  }
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+@layer components {
+
+  /*
+    Default card.
+
+    IMPORTANT:
+    No backdrop-filter here.
+    No giant blur.
+  */
+
+  .glass-card {
+    background: rgba(8, 15, 11, 0.88);
+
+    border: 1px solid rgba(120, 158, 142, 0.12);
+
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.18);
+  }
+
+
+  /*
+    Panel.
+  */
+
+  .glass-panel {
+    background: rgba(7, 14, 10, 0.90);
+
+    border: 1px solid rgba(120, 158, 142, 0.12);
+
+    box-shadow:
+      0 8px 26px rgba(0, 0, 0, 0.20);
+  }
+
+
+  /*
+    Use this VERY selectively.
+    backdrop-filter is still expensive.
+  */
+
+  .glass-blur {
+    background: rgba(7, 14, 10, 0.86);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(120, 158, 142, 0.12);
+  }
+
+
+  /*
+    Project cards.
+  */
+
+  .project-card {
+    contain: layout paint;
+
+    background: rgba(8, 15, 11, 0.88);
+
+    border: 1px solid rgba(120, 158, 142, 0.12);
+
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.18);
+
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+
+  .project-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.25);
+
+    border-color: rgba(92, 144, 120, 0.25);
+  }
+
+
+  /*
+    Highlight card.
+  */
+
+  .highlight-card {
+    background: rgba(10, 19, 14, 0.92);
+
+    border: 1px solid rgba(92, 137, 117, 0.18);
+
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.22);
+  }
+
+
+  .shadow-ambient {
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.18);
+  }
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+@layer components {
+
+  .form-input-styled {
+    width: 100%;
+
+    border-radius: 8px;
+
+    border: 1px solid rgba(105, 143, 126, 0.25);
+
+    background: #08100c;
+
+    color: #e3ebe7;
+
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+
+  .form-input-styled:focus {
+    outline: none;
+
+    border-color: #5c9078;
+
+    box-shadow:
+      0 0 0 2px rgba(92, 144, 120, 0.14);
+  }
+}
+
+
+/* =========================================================
+   TEXT GRADIENT
+========================================================= */
+
+@layer components {
+
+  .text-gradient {
+    background:
+      linear-gradient(
+        135deg,
+        #8fb9a5 0%,
+        #4f8069 55%,
+        #477c92 100%
+      );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+
+/* =========================================================
+   GRID BACKGROUND
+========================================================= */
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(
+      rgba(118, 151, 137, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(118, 151, 137, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+
+  /*
+    Prevent unnecessary interaction.
+  */
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GREEN ATMOSPHERE
+========================================================= */
+
+.green-glow {
+  pointer-events: none;
+
+  /*
+    Static gradient.
+    No animated blur.
+  */
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(42, 91, 70, 0.16) 0%,
+      rgba(12, 43, 34, 0.06) 42%,
+      transparent 72%
+    );
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee-mask {
+  position: relative;
+
+  overflow: hidden;
+
+  /*
+    Mask is relatively cheap compared with
+    backdrop-filter.
+  */
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+}
+
+
+/*
+  Don't globally apply will-change.
+  Browser can optimize transform animation itself.
+*/
+
+.animate-marquee,
+.animate-marquee-reverse {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+
+.animate-marquee {
+  animation:
+    marquee 36s linear infinite;
+}
+
+
+.animate-marquee-reverse {
+  animation:
+    marqueeReverse 36s linear infinite;
+}
+
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+
+@keyframes marquee {
+
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+
+@keyframes marqueeReverse {
+
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+/* =========================================================
+   FLOATING ANIMATIONS
+========================================================= */
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+}
+
+
+@keyframes float-medium {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+
+@keyframes float-icosa {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0) rotate(6deg);
+  }
+}
+
+
+@keyframes float-torus {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(180deg);
+  }
+}
+
+
+@keyframes spin-slow {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   FLOATING UTILITIES
+========================================================= */
+
+/*
+  IMPORTANT:
+  No permanent will-change here.
+
+  This reduces unnecessary GPU layers.
+*/
+
+.animate-float-slow {
+  animation:
+    float-slow 14s ease-in-out infinite;
+}
+
+
+.animate-float-medium {
+  animation:
+    float-medium 16s ease-in-out infinite;
+}
+
+
+.animate-float-icosa {
+  animation:
+    float-icosa 16s ease-in-out infinite;
+}
+
+
+.animate-float-torus {
+  animation:
+    float-torus 18s linear infinite;
+}
+
+
+.animate-spin-slow {
+  animation:
+    spin-slow 24s linear infinite;
+}
+
+
+/* =========================================================
+   ANIMATION DELAY
+========================================================= */
+
+.delay-200 {
+  animation-delay: 2s;
+}
+
+
+/* =========================================================
+   MATERIAL SYMBOLS
+========================================================= */
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+
+  font-weight: normal;
+  font-style: normal;
+
+  font-size: 24px;
+  line-height: 1;
+
+  letter-spacing: normal;
+  text-transform: none;
+
+  display: inline-block;
+
+  white-space: nowrap;
+  word-wrap: normal;
+
+  direction: ltr;
+
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+
+  -webkit-font-smoothing: antialiased;
+
+  /*
+    Prevent accidental layout animation.
+  */
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   LOCOMOTIVE SCROLL
+========================================================= */
+
+/*
+  Locomotive owns smooth scrolling.
+*/
+
+html.has-scroll-smooth {
+  scroll-behavior: auto !important;
+}
+
+
+/*
+  Prevent text selection while dragging scrollbar.
+*/
+
+html.has-scroll-dragging {
+  user-select: none;
+}
+
+
+/*
+  Locomotive Scroll can use this class.
+*/
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+
+/*
+  IMPORTANT:
+  Don't add another smooth-scroll system here.
+*/
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE PERFORMANCE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /*
+    Completely remove backdrop blur on mobile.
+  */
+
+  .glass-blur {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    background: rgba(7, 14, 10, 0.94);
+  }
+
+
+  /*
+    Stop decorative 3D-like floating animations.
+  */
+
+  .animate-float-icosa,
+  .animate-float-torus,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+
+
+  /*
+    Slower marquee = fewer visual updates.
+  */
+
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation-duration: 42s;
+  }
+
+
+  /*
+    Reduce card shadows.
+  */
+
+  .project-card,
+  .highlight-card,
+  .glass-card,
+  .glass-panel {
+    box-shadow:
+      0 5px 18px rgba(0, 0, 0, 0.16);
+  }
+
+
+  /*
+    Remove expensive hover transforms on touch devices.
+  */
+
+  .project-card:hover {
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   SMALL DEVICES
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation-duration: 48s;
+  }
+
+  .green-glow {
+    opacity: 0.7;
+  }
+}
+
+
+/* =========================================================
+   REDUCED DATA
+========================================================= */
+
+@media (prefers-reduced-data: reduce) {
+
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-icosa,
+  .animate-float-torus,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+
+  .glass-blur {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL SCROLLBAR RESET
+========================================================= */
+
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+
+/* =========================================================
+   IMAGE PERFORMANCE
+========================================================= */
+
+/*
+  Helps browser rendering of image-heavy portfolio pages.
+*/
+
+img {
+  image-rendering: auto;
+}
+
+
+/*
+  Avoid unnecessary image dragging.
+*/
+
+img[draggable="false"] {
+  user-select: none;
+}
+
+
+/* =========================================================
+   SELECTION / TOUCH
+========================================================= */
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+
+/* =========================================================
+   FINAL PERFORMANCE RULES
+========================================================= */
+
+/*
+  Avoid applying these globally:
+
+  ❌ filter: blur(...)
+  ❌ backdrop-filter: blur(...)
+  ❌ will-change: transform
+  ❌ transition: all
+  ❌ huge animated box-shadows
+  ❌ animated width / height
+  ❌ animated top / left
+
+  Prefer:
+
+  ✅ transform
+  ✅ opacity
+  ✅ static gradients
+  ✅ small shadows
+*/
+/* =========================================================
+   ABOUT PAGE - PERFORMANCE ANIMATIONS
+========================================================= */
+
+.about-particle {
+  opacity: 0;
+  animation: aboutParticle 5s ease-in-out infinite;
+}
+
+@keyframes aboutParticle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+.about-float {
+  animation: aboutFloat 10s ease-in-out infinite;
+  will-change: transform;
+}
+
+.about-float-reverse {
+  animation: aboutFloatReverse 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes aboutFloat {
+  0%,
+  100% {
+    transform: rotate(45deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(50deg) translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes aboutFloatReverse {
+  0%,
+  100% {
+    transform: rotate(45deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(40deg) translate3d(0, 10px, 0);
+  }
+}
+
+/*
+  Static atmospheric glow.
+  Much cheaper than continuously animating a large blur.
+*/
+
+.about-glow {
+  filter: blur(100px);
+  opacity: 0.7;
+}
+
+.about-glow-secondary {
+  opacity: 0.5;
+}
+
+/*
+  Disable decorative animations for users/devices
+  requesting reduced motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  .about-particle,
+  .about-float,
+  .about-float-reverse {
+    animation: none !important;
+  }
+}
+
+/*
+  Mobile performance.
+*/
+
+@media (max-width: 768px) {
+  .about-glow {
+    filter: blur(70px);
+    opacity: 0.45;
+  }
+
+  .about-particle {
+    display: none;
+  }
+
+  .about-float,
+  .about-float-reverse {
+    display: none;
+  }
+}
+/* =========================================================
+   BLOG PERFORMANCE
+========================================================= */
+
+.blog-glow {
+  filter: blur(90px);
+  opacity: 0.65;
+}
+
+.blog-glow-blue {
+  opacity: 0.45;
+}
+
+.blog-glow-bottom {
+  opacity: 0.4;
+}
+
+/* Blog cards */
+
+.blog-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout paint;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(65, 102, 80, 0.4);
+}
+
+/* Images */
+
+.blog-card-image {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition:
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 300ms ease,
+    opacity 300ms ease;
+}
+
+.blog-card:hover .blog-card-image {
+  transform: scale(1.035);
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* Arrow */
+
+.blog-arrow {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease;
+}
+
+.blog-card:hover .blog-arrow {
+  transform: rotate(45deg);
+  border-color: rgba(98, 139, 115, 0.5);
+}
+
+/* Bottom line */
+
+.blog-card-line {
+  transition: width 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card:hover .blog-card-line {
+  width: 100%;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .blog-glow {
+    filter: blur(60px);
+    opacity: 0.35;
+  }
+
+  .blog-card {
+    contain: layout paint;
+  }
+
+  .blog-card:hover {
+    transform: none;
+  }
+
+  .blog-card:hover .blog-card-image {
+    transform: none;
+    filter: grayscale(20%);
+    opacity: 0.8;
+  }
+
+  .blog-card:hover .blog-arrow {
+    transform: none;
+  }
+
+  .blog-card-line {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card,
+  .blog-card-image,
+  .blog-arrow,
+  .blog-card-line {
+    transition: none !important;
+  }
+
+  .blog-card:hover {
+    transform: none;
+  }
+
+  .blog-card:hover .blog-card-image {
+    transform: none;
+  }
+
+  .blog-card:hover .blog-arrow {
+    transform: none;
+  }
+}
+/* =========================================================
+   CASE STUDY PERFORMANCE
+========================================================= */
+
+.case-glow {
+  filter: blur(80px);
+  opacity: 0.55;
+}
+
+.case-glow-blue {
+  opacity: 0.4;
+}
+
+.case-glow-bottom {
+  opacity: 0.35;
+}
+
+.case-panel {
+  contain: paint;
+}
+
+/* Hero image */
+
+.case-hero-image {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
+}
+
+.case-main-image {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition:
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 300ms ease,
+    filter 300ms ease;
+}
+
+.case-hero-image:hover .case-main-image {
+  transform: scale(1.025);
+  opacity: 0.95;
+  filter: grayscale(0);
+}
+
+/* Technology pills */
+
+.case-tech {
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.case-tech:hover {
+  border-color: rgba(82, 125, 99, 0.5);
+  background: #0d1d14;
+}
+
+/* Solution cards */
+
+.case-solution-card {
+  contain: layout paint;
+  transform: translateZ(0);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease;
+}
+
+.case-solution-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(69, 109, 87, 0.4);
+}
+
+.case-arrow {
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.case-solution-card:hover .case-arrow {
+  transform: translate(3px, -3px);
+  color: #739b85;
+}
+
+.case-card-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    #527d63,
+    transparent
+  );
+  transition: width 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.case-solution-card:hover .case-card-line {
+  width: 100%;
+}
+
+/* Results */
+
+.case-results-glow {
+  filter: blur(80px);
+  opacity: 0.45;
+}
+
+.case-result-card {
+  contain: layout paint;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease;
+}
+
+.case-result-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(69, 108, 86, 0.4);
+}
+
+.case-result-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  transform: translateX(-50%);
+  background: #608c73;
+  transition: width 300ms ease;
+}
+
+.case-result-card:hover .case-result-line {
+  width: 50%;
+}
+
+/* CTA */
+
+.case-cta-glow {
+  filter: blur(70px);
+  opacity: 0.4;
+}
+
+.case-cta-button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.case-cta-shine {
+  position: absolute;
+  inset-block: 0;
+  left: -50%;
+  width: 30%;
+  transform: skewX(-20deg);
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0;
+}
+
+.case-cta-button:hover .case-cta-shine {
+  opacity: 1;
+  animation: case-cta-shine 900ms ease forwards;
+}
+
+@keyframes case-cta-shine {
+  from {
+    left: -50%;
+  }
+
+  to {
+    left: 130%;
+  }
+}
+
+/* =========================================================
+   MOBILE PERFORMANCE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .case-glow,
+  .case-results-glow,
+  .case-cta-glow {
+    filter: blur(55px);
+    opacity: 0.25;
+  }
+
+  .case-solution-card:hover,
+  .case-result-card:hover {
+    transform: none;
+  }
+
+  .case-hero-image:hover .case-main-image {
+    transform: none;
+    filter: grayscale(15%);
+    opacity: 0.8;
+  }
+
+  .case-card-line,
+  .case-result-line {
+    display: none;
+  }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .case-main-image,
+  .case-solution-card,
+  .case-result-card,
+  .case-arrow,
+  .case-card-line,
+  .case-result-line {
+    transition: none !important;
+  }
+
+  .case-solution-card:hover,
+  .case-result-card:hover {
+    transform: none !important;
+  }
+
+  .case-hero-image:hover .case-main-image {
+    transform: none !important;
+  }
+
+  .case-cta-shine {
+    animation: none !important;
+  }
+
+}
+/* =========================================================
+   CONTACT PAGE PERFORMANCE OPTIMIZATION
+========================================================= */
+
+/* Static background glow */
+.contact-glow {
+  filter: blur(90px);
+  opacity: 0.45;
+  contain: paint;
+  transform: translateZ(0);
+  pointer-events: none;
+}
+
+.contact-glow-blue {
+  opacity: 0.28;
+}
+
+.contact-glow-bottom {
+  opacity: 0.25;
+}
+
+/* =========================================================
+   CONTACT PANELS
+========================================================= */
+
+.contact-panel,
+.contact-info-card {
+  contain: paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   INFO CARD
+========================================================= */
+
+.contact-info-card {
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease;
+}
+
+.contact-info-card:hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: rgba(70, 106, 85, 0.4);
+}
+
+/* Bottom accent */
+.contact-info-card:hover .contact-card-accent {
+  width: 50%;
+}
+
+.contact-card-accent {
+  transition: width 250ms ease;
+}
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
+
+.contact-panel input,
+.contact-panel select,
+.contact-panel textarea {
+  transform: translateZ(0);
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.contact-submit {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Shine is ONLY created when user hovers */
+.contact-button-shine {
+  position: absolute;
+  inset-block: 0;
+  left: -50%;
+  width: 30%;
+  transform: skewX(-20deg);
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-submit:hover .contact-button-shine {
+  opacity: 1;
+  animation: contact-shine 700ms ease forwards;
+}
+
+@keyframes contact-shine {
+  from {
+    left: -50%;
+  }
+
+  to {
+    left: 130%;
+  }
+}
+
+/* =========================================================
+   BOTTOM CTA
+========================================================= */
+
+.contact-cta {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .contact-glow {
+    filter: blur(55px);
+    opacity: 0.25;
+  }
+
+  .contact-info-card:hover {
+    transform: none;
+  }
+
+  .contact-info-card:hover .contact-card-accent {
+    width: 0;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-info-card,
+  .contact-submit,
+  .contact-cta,
+  .contact-button-shine,
+  .contact-card-accent {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .contact-info-card:hover,
+  .contact-cta:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   FAQ PERFORMANCE
+========================================================= */
+
+.faq-static-glow {
+  filter: blur(90px);
+  pointer-events: none;
+  contain: paint;
+}
+
+.faq-enter {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  animation: faq-enter 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.faq-enter-delay-1 {
+  animation-delay: 80ms;
+}
+
+.faq-enter-delay-2 {
+  animation-delay: 160ms;
+}
+
+@keyframes faq-enter {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* FAQ cards */
+
+.faq-card {
+  contain: paint;
+  transform: translateZ(0);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.faq-card:hover {
+  border-color: rgba(70, 106, 85, 0.38);
+  background-color: #09110d;
+}
+
+/* Contact cards */
+
+.faq-contact-card {
+  contain: paint;
+  transform: translateZ(0);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.faq-contact-card:hover {
+  transform: translate3d(0, -3px, 0);
+  border-color: rgba(70, 106, 85, 0.4);
+}
+
+/* Final CTA */
+
+.faq-final-cta {
+  contain: paint;
+  transform: translateZ(0);
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .faq-contact-card:hover {
+    transform: none;
+  }
+
+  .faq-card,
+  .faq-contact-card {
+    transition: none;
+  }
+}
+
+/* Mobile: don't use hover movement */
+
+@media (max-width: 768px) {
+  .faq-static-glow {
+    filter: blur(55px);
+  }
+
+  .faq-contact-card:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   OUR WORK — PERFORMANCE CSS
+========================================================= */
+
+/* Static background glow */
+.our-work-glow {
+  filter: blur(75px);
+  opacity: 0.7;
+  contain: paint;
+}
+
+/* CTA glow */
+.our-work-cta-glow {
+  filter: blur(80px);
+  contain: paint;
+}
+
+/* Hero entrance */
+.our-work-enter {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  animation: our-work-enter 500ms cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+.our-work-enter-delay-1 {
+  animation-delay: 80ms;
+}
+
+.our-work-enter-delay-2 {
+  animation-delay: 160ms;
+}
+
+@keyframes our-work-enter {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* =========================================================
+   PROJECT CARDS
+========================================================= */
+
+.our-work-card {
+  contain: paint;
+  background: rgba(7, 13, 10, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transform: translateZ(0);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.our-work-card:hover {
+  transform: translate3d(0, -3px, 0);
+  border-color: rgba(70, 106, 85, 0.4);
+  background: #09110d;
+}
+
+/* =========================================================
+   PROJECT IMAGES
+========================================================= */
+
+.our-work-image {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  transition:
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 250ms ease;
+}
+
+.our-work-card:hover .our-work-image {
+  transform: scale(1.035);
+  filter: grayscale(0);
+}
+
+/* =========================================================
+   VIEW ICON
+========================================================= */
+
+.our-work-view-icon {
+  opacity: 0;
+  transform: translate3d(0, 5px, 0) scale(0.92);
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.our-work-card:hover .our-work-view-icon {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .our-work-glow {
+    filter: blur(50px);
+    opacity: 0.5;
+  }
+
+  .our-work-cta-glow {
+    filter: blur(55px);
+  }
+
+  .our-work-card:hover {
+    transform: none;
+  }
+
+  .our-work-card:hover .our-work-image {
+    transform: none;
+  }
+
+  .our-work-view-icon {
+    display: none;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .our-work-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .our-work-card,
+  .our-work-image,
+  .our-work-view-icon {
+    transition: none;
+  }
+
+  .our-work-card:hover {
+    transform: none;
+  }
+
+  .our-work-card:hover .our-work-image {
+    transform: none;
+  }
+}
+/* =========================================================
+   PRICING — PERFORMANCE CSS
+========================================================= */
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.pricing-background-glow {
+  filter: blur(65px);
+  opacity: 0.65;
+  contain: paint;
+}
+
+.pricing-cta-glow {
+  filter: blur(75px);
+  contain: paint;
+}
+
+.pricing-popular-glow {
+  filter: blur(55px);
+  contain: paint;
+}
+
+
+/* =========================================================
+   HERO ENTRANCE
+========================================================= */
+
+.pricing-enter {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  animation:
+    pricing-enter-animation
+    500ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+.pricing-enter-delay-1 {
+  animation-delay: 70ms;
+}
+
+.pricing-enter-delay-2 {
+  animation-delay: 140ms;
+}
+
+.pricing-enter-delay-3 {
+  animation-delay: 210ms;
+}
+
+@keyframes pricing-enter-animation {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+/* =========================================================
+   PRICING CARD
+========================================================= */
+
+.pricing-card {
+  contain: paint;
+  transform: translateZ(0);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.pricing-card:hover {
+  transform: translate3d(0, -5px, 0);
+  border-color: rgba(70, 106, 85, 0.4);
+  background: #09110d;
+}
+
+.pricing-card-popular {
+  box-shadow:
+    0 18px 55px
+    rgba(18, 64, 45, 0.14);
+}
+
+.pricing-card-popular:hover {
+  transform: translate3d(0, -7px, 0);
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.pricing-icon {
+  transform: translateZ(0);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.pricing-card:hover .pricing-icon {
+  transform: rotate(3deg) scale(1.03);
+  border-color: rgba(88, 123, 103, 0.5);
+  background: #0d1c14;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.pricing-button {
+  transform: translateZ(0);
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.pricing-button:hover {
+  transform: translate3d(0, -1px, 0);
+}
+
+.pricing-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.035),
+      transparent
+    );
+
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 500ms ease;
+}
+
+.pricing-button:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+
+/* =========================================================
+   CARD BOTTOM LINE
+========================================================= */
+
+.pricing-card:hover .pricing-bottom-line {
+  width: 100%;
+}
+
+.pricing-bottom-line {
+  transition: width 220ms ease;
+}
+
+
+/* =========================================================
+   GUARANTEE CARDS
+========================================================= */
+
+.pricing-guarantee-card {
+  contain: paint;
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.pricing-guarantee-card:hover {
+  transform: translate3d(0, -4px, 0);
+  border-color: rgba(70, 106, 85, 0.4);
+  background: #09110d;
+}
+
+.pricing-guarantee-icon {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.pricing-guarantee-card:hover .pricing-guarantee-icon {
+  transform: rotate(3deg) scale(1.03);
+  border-color: rgba(88, 123, 103, 0.5);
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.pricing-cta {
+  contain: paint;
+}
+
+.pricing-cta-button {
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.pricing-cta-button:hover {
+  transform: translate3d(0, -3px, 0);
+  border-color: rgba(113, 155, 132, 0.5);
+  background: #1a3e30;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .pricing-background-glow {
+    filter: blur(45px);
+    opacity: 0.45;
+  }
+
+  .pricing-popular-glow {
+    filter: blur(40px);
+  }
+
+  .pricing-cta-glow {
+    filter: blur(50px);
+  }
+
+  .pricing-card:hover,
+  .pricing-card-popular:hover,
+  .pricing-guarantee-card:hover {
+    transform: none;
+  }
+
+  .pricing-card:hover .pricing-icon,
+  .pricing-guarantee-card:hover .pricing-guarantee-icon {
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .pricing-card,
+  .pricing-guarantee-card,
+  .pricing-icon,
+  .pricing-guarantee-icon,
+  .pricing-button,
+  .pricing-cta-button {
+    transition: none;
+  }
+
+  .pricing-card:hover,
+  .pricing-card-popular:hover,
+  .pricing-guarantee-card:hover,
+  .pricing-button:hover,
+  .pricing-cta-button:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   SERVICES PERFORMANCE CSS
+========================================================= */
+
+.services-page {
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.services-bg-glow {
+  filter: blur(60px);
+  opacity: 0.55;
+  contain: paint;
+}
+
+.services-cta-glow {
+  filter: blur(70px);
+  contain: paint;
+}
+
+
+/* =========================================================
+   HERO ENTRANCE
+========================================================= */
+
+.services-enter {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+
+  animation:
+    services-enter-animation
+    500ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+.services-enter-delay-1 {
+  animation-delay: 70ms;
+}
+
+.services-enter-delay-2 {
+  animation-delay: 140ms;
+}
+
+.services-enter-delay-3 {
+  animation-delay: 210ms;
+}
+
+@keyframes services-enter-animation {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+/* =========================================================
+   SERVICE CARD
+========================================================= */
+
+.service-card {
+  contain: paint;
+  transform: translateZ(0);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.service-card:hover {
+  transform: translate3d(0, -5px, 0);
+
+  border-color: rgba(70, 106, 85, 0.4);
+
+  background-color: #09110d;
+}
+
+
+/* =========================================================
+   CARD GLOW
+========================================================= */
+
+.service-card-glow {
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(64, 103, 79, 0.10),
+      transparent 45%
+    );
+
+  transition: opacity 180ms ease;
+
+  contain: paint;
+}
+
+.service-card:hover .service-card-glow {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.service-icon {
+  transform: translateZ(0);
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.service-card:hover .service-icon {
+  transform: rotate(3deg) scale(1.03);
+
+  border-color: rgba(92, 130, 109, 0.5);
+
+  background-color: #0d1c14;
+}
+
+
+/* =========================================================
+   BOTTOM LINE
+========================================================= */
+
+.service-bottom-line {
+  transition: width 220ms ease;
+}
+
+.service-card:hover .service-bottom-line {
+  width: 100%;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.services-primary-button,
+.services-secondary-button {
+  transform: translateZ(0);
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.services-primary-button:hover {
+  transform: translate3d(0, -2px, 0);
+
+  border-color: rgba(113, 155, 132, 0.5);
+
+  background-color: #1a3e30;
+}
+
+.services-secondary-button:hover {
+  transform: translate3d(0, -2px, 0);
+
+  border-color: rgba(70, 106, 85, 0.4);
+
+  background-color: #0d1712;
+
+  color: #b0c0b7;
+}
+
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process-card {
+  contain: paint;
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.process-card:hover {
+  transform: translate3d(0, -4px, 0);
+
+  border-color: rgba(70, 106, 85, 0.4);
+
+  background-color: #09110d;
+}
+
+.process-line {
+  transition: width 200ms ease;
+}
+
+.process-card:hover .process-line {
+  width: 100%;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.services-cta {
+  contain: paint;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .services-bg-glow {
+    filter: blur(45px);
+    opacity: 0.4;
+  }
+
+  .services-cta-glow {
+    filter: blur(50px);
+  }
+
+  .service-card:hover,
+  .process-card:hover,
+  .services-primary-button:hover,
+  .services-secondary-button:hover {
+    transform: none;
+  }
+
+  .service-card:hover .service-icon {
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .services-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .service-card,
+  .service-icon,
+  .process-card,
+  .services-primary-button,
+  .services-secondary-button,
+  .service-bottom-line,
+  .process-line {
+    transition: none;
+  }
+
+  .service-card:hover,
+  .process-card:hover,
+  .services-primary-button:hover,
+  .services-secondary-button:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   THANK YOU PAGE PERFORMANCE
+========================================================= */
+
+.thankyou-page {
+  isolation: isolate;
+}
+
+
+/* Background glows */
+
+.thankyou-glow {
+  filter: blur(60px);
+  opacity: 0.5;
+  contain: paint;
+}
+
+
+/* Card */
+
+.thankyou-card {
+  contain: paint;
+  animation: thankyou-card-enter 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes thankyou-card-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+/* Success icon */
+
+.success-icon {
+  animation: success-icon-enter 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes success-icon-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* Text entrance */
+
+.thankyou-enter {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+
+  animation:
+    thankyou-text-enter
+    450ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+.thankyou-delay-1 {
+  animation-delay: 80ms;
+}
+
+.thankyou-delay-2 {
+  animation-delay: 140ms;
+}
+
+.thankyou-delay-3 {
+  animation-delay: 200ms;
+}
+
+.thankyou-delay-4 {
+  animation-delay: 260ms;
+}
+
+@keyframes thankyou-text-enter {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .thankyou-glow {
+    filter: blur(45px);
+    opacity: 0.35;
+  }
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .thankyou-card,
+  .success-icon,
+  .thankyou-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
