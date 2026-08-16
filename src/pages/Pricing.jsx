@@ -1,20 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Check,
   CheckCircle2,
   Code2,
   Copyright,
-  Crown,
   Database,
-  Layers3,
   LifeBuoy,
   Palette,
-  Sparkles,
   ShieldCheck,
+  Sparkles,
   Zap,
+  Crown,
 } from "lucide-react";
 
 /* =========================================================
@@ -25,7 +22,7 @@ const plans = [
   {
     name: "UI/UX Design",
     description: "Beautiful, user-centered designs that convert.",
-    price: 5000,
+    price: 350,
     icon: Palette,
 
     features: [
@@ -45,7 +42,7 @@ const plans = [
   {
     name: "Static Web Development",
     description: "Fast, secure, and stunning websites.",
-    price: 15000,
+    price: 1199,
     icon: Code2,
 
     features: [
@@ -66,7 +63,7 @@ const plans = [
   {
     name: "Dynamic Web Development",
     description: "Scalable, full-featured web applications.",
-    price: 35000,
+    price: 2999,
     icon: Database,
 
     features: [
@@ -113,59 +110,24 @@ const guarantees = [
 ];
 
 /* =========================================================
-   ANIMATIONS
+   PRICING PAGE
 ========================================================= */
 
-const containerVariants = {
-  hidden: {},
-
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-    scale: 0.96,
-    filter: "blur(8px)",
-  },
-
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-/* =========================================================
-   PRICING
-========================================================= */
-
-const Pricing = () => {
+export default function Pricing() {
   const formatPrice = (price) => {
-    return "₹" + price.toLocaleString("en-IN");
+    return "$" + price.toLocaleString("en-US");
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#030605] text-[#E8EEE9]">
+    <main className="min-h-screen bg-[#030605] text-[#E8EEE9] overflow-hidden">
 
       {/* =====================================================
           BACKGROUND
-      ====================================================== */}
+      ===================================================== */}
 
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
 
-        {/* Grid */}
+        {/* Technical Grid */}
 
         <div
           className="absolute inset-0 opacity-[0.025]"
@@ -185,19 +147,9 @@ const Pricing = () => {
           }}
         />
 
-        {/* Main green glow */}
+        {/* Static Green Glow */}
 
-        <motion.div
-          animate={{
-            x: ["-10%", "10%", "-10%"],
-            y: ["5%", "-5%", "5%"],
-            scale: [1, 1.08, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        <div
           className="
             absolute
             left-[5%]
@@ -210,18 +162,9 @@ const Pricing = () => {
           "
         />
 
-        {/* Blue-green glow */}
+        {/* Static Blue Green Glow */}
 
-        <motion.div
-          animate={{
-            x: [0, -70, 0],
-            y: [0, 60, 0],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        <div
           className="
             absolute
             right-[-250px]
@@ -234,18 +177,9 @@ const Pricing = () => {
           "
         />
 
-        {/* Bottom green glow */}
+        {/* Static Bottom Glow */}
 
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.02, 0.07, 0.02],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        <div
           className="
             absolute
             bottom-[-300px]
@@ -253,64 +187,17 @@ const Pricing = () => {
             h-[600px]
             w-[600px]
             rounded-full
-            bg-[#10442E]
+            bg-[#10442E]/20
             blur-[160px]
-          "
-        />
-
-        {/* Floating rings */}
-
-        <motion.div
-          animate={{
-            rotate: 360,
-          }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="
-            absolute
-            right-[7%]
-            top-[13%]
-            hidden
-            h-64
-            w-64
-            rounded-full
-            border
-            border-[#527863]/10
-            lg:block
-          "
-        />
-
-        <motion.div
-          animate={{
-            rotate: -360,
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="
-            absolute
-            right-[10%]
-            top-[17%]
-            hidden
-            h-48
-            w-48
-            rounded-full
-            border
-            border-[#527863]/10
-            lg:block
           "
         />
 
       </div>
 
+
       {/* =====================================================
           HERO
-      ====================================================== */}
+      ===================================================== */}
 
       <section
         className="
@@ -328,18 +215,7 @@ const Pricing = () => {
 
           {/* Eyebrow */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
+          <div
             className="
               mx-auto
               inline-flex
@@ -354,52 +230,28 @@ const Pricing = () => {
               uppercase
               tracking-[0.3em]
               text-[#719783]
-              backdrop-blur-xl
             "
           >
 
-            <motion.span
-              animate={{
-                opacity: [0.3, 1, 0.3],
-                scale: [0.8, 1.1, 0.8],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
+            <span
               className="
                 h-1.5
                 w-1.5
                 rounded-full
                 bg-[#639176]
-                shadow-[0_0_10px_rgba(99,145,118,0.8)]
               "
             />
 
             Transparent Pricing
 
-          </motion.div>
+          </div>
+
 
           {/* Heading */}
 
-          <div className="mt-7 overflow-hidden">
+          <div className="mt-7">
 
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 70,
-                filter: "blur(12px)",
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-              }}
-              transition={{
-                duration: 1,
-                delay: 0.15,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+            <h1
               className="
                 font-serif
                 text-5xl
@@ -411,6 +263,7 @@ const Pricing = () => {
                 md:text-7xl
               "
             >
+
               Simple Pricing.
 
               <br />
@@ -427,25 +280,15 @@ const Pricing = () => {
               >
                 Serious Results.
               </span>
-            </motion.h1>
+
+            </h1>
 
           </div>
 
+
           {/* Description */}
 
-          <motion.p
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.65,
-            }}
+          <p
             className="
               mx-auto
               mt-7
@@ -459,21 +302,12 @@ const Pricing = () => {
             No hidden costs. No confusing packages.
             Choose the right solution for your business —
             from product design to full-scale web applications.
-          </motion.p>
+          </p>
 
-          {/* GST */}
 
-          <motion.p
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.9,
-            }}
+          {/* Currency */}
+
+          <p
             className="
               mt-5
               text-[10px]
@@ -482,16 +316,17 @@ const Pricing = () => {
               text-[#46554D]
             "
           >
-            * All prices are in Indian Rupees (₹). GST (18%) applicable.
-          </motion.p>
+            * All prices are in US Dollars ($). Applicable taxes may vary.
+          </p>
 
         </div>
 
       </section>
 
+
       {/* =====================================================
           PRICING CARDS
-      ====================================================== */}
+      ===================================================== */}
 
       <section
         className="
@@ -505,14 +340,7 @@ const Pricing = () => {
         "
       >
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.1,
-          }}
-          variants={containerVariants}
+        <div
           className="
             grid
             grid-cols-1
@@ -521,20 +349,13 @@ const Pricing = () => {
           "
         >
 
-          {plans.map((plan, index) => {
+          {plans.map((plan) => {
 
             const Icon = plan.icon;
 
             return (
-              <motion.div
+              <div
                 key={plan.name}
-                variants={cardVariants}
-                whileHover={{
-                  y: plan.popular ? -10 : -6,
-                  transition: {
-                    duration: 0.3,
-                  },
-                }}
                 className={`
                   group
                   relative
@@ -545,8 +366,8 @@ const Pricing = () => {
                   bg-[#070D0A]/95
                   p-7
                   backdrop-blur-xl
-                  transition-all
-                  duration-500
+                  transition-colors
+                  duration-300
                   md:p-8
                   ${
                     plan.popular
@@ -556,33 +377,7 @@ const Pricing = () => {
                 `}
               >
 
-                {/* Popular glow */}
-
-                {plan.popular && (
-                  <motion.div
-                    animate={{
-                      opacity: [0.25, 0.5, 0.25],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="
-                      pointer-events-none
-                      absolute
-                      -right-20
-                      -top-20
-                      h-56
-                      w-56
-                      rounded-full
-                      bg-[#174D36]/20
-                      blur-[80px]
-                    "
-                  />
-                )}
-
-                {/* Top accent */}
+                {/* Top Accent */}
 
                 <div
                   className={`
@@ -599,7 +394,8 @@ const Pricing = () => {
                   `}
                 />
 
-                {/* Popular badge */}
+
+                {/* Popular Badge */}
 
                 {plan.popular && (
                   <div
@@ -633,13 +429,10 @@ const Pricing = () => {
                   </div>
                 )}
 
+
                 {/* Icon */}
 
-                <motion.div
-                  whileHover={{
-                    rotate: 5,
-                    scale: 1.05,
-                  }}
+                <div
                   className="
                     relative
                     flex
@@ -657,33 +450,14 @@ const Pricing = () => {
                 >
 
                   <Icon
-                    className="
-                      h-6
-                      w-6
-                      text-[#6E997F]
-                    "
+                    className="h-6 w-6 text-[#6E997F]"
                     strokeWidth={1.25}
                   />
 
-                  {/* Icon glow */}
+                </div>
 
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute
-                      inset-0
-                      bg-[#2D684A]/10
-                      opacity-0
-                      blur-xl
-                      transition-opacity
-                      duration-500
-                      group-hover:opacity-100
-                    "
-                  />
 
-                </motion.div>
-
-                {/* Plan info */}
+                {/* Plan Information */}
 
                 <div className="mt-7">
 
@@ -696,6 +470,7 @@ const Pricing = () => {
                   >
                     {plan.name}
                   </h3>
+
 
                   <p
                     className="
@@ -710,6 +485,7 @@ const Pricing = () => {
                   </p>
 
                 </div>
+
 
                 {/* Price */}
 
@@ -737,6 +513,7 @@ const Pricing = () => {
 
                   </div>
 
+
                   <span
                     className="
                       mt-1
@@ -752,29 +529,15 @@ const Pricing = () => {
 
                 </div>
 
+
                 {/* Features */}
 
                 <ul className="mt-7 flex-1 space-y-3.5">
 
-                  {plan.features.map((feature, idx) => (
+                  {plan.features.map((feature) => (
 
-                    <motion.li
+                    <li
                       key={feature}
-                      initial={{
-                        opacity: 0,
-                        x: -8,
-                      }}
-                      whileInView={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      viewport={{
-                        once: true,
-                      }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.15 + idx * 0.04,
-                      }}
                       className="
                         flex
                         items-start
@@ -796,28 +559,28 @@ const Pricing = () => {
                         strokeWidth={1.4}
                       />
 
-                      <span>{feature}</span>
+                      <span>
+                        {feature}
+                      </span>
 
-                    </motion.li>
+                    </li>
 
                   ))}
 
                 </ul>
+
 
                 {/* CTA */}
 
                 <Link
                   to="/contact"
                   className={`
-                    group/button
-                    relative
                     mt-8
                     flex
                     w-full
                     items-center
                     justify-center
                     gap-2
-                    overflow-hidden
                     border
                     px-5
                     py-4
@@ -825,7 +588,7 @@ const Pricing = () => {
                     font-medium
                     uppercase
                     tracking-[0.15em]
-                    transition-all
+                    transition-colors
                     duration-300
                     ${
                       plan.popular
@@ -835,42 +598,19 @@ const Pricing = () => {
                   `}
                 >
 
-                  {/* Button glow */}
-
-                  <span
-                    className="
-                      absolute
-                      inset-0
-                      -translate-x-full
-                      bg-gradient-to-r
-                      from-transparent
-                      via-white/[0.04]
-                      to-transparent
-                      transition-transform
-                      duration-700
-                      group-hover/button:translate-x-full
-                    "
-                  />
-
-                  <span className="relative">
+                  <span>
                     {plan.cta}
                   </span>
 
                   <ArrowRight
-                    className="
-                      relative
-                      h-4
-                      w-4
-                      transition-transform
-                      duration-300
-                      group-hover/button:translate-x-1
-                    "
+                    className="h-4 w-4"
                     strokeWidth={1.3}
                   />
 
                 </Link>
 
-                {/* Bottom line */}
+
+                {/* Bottom Accent */}
 
                 <div
                   className="
@@ -884,22 +624,23 @@ const Pricing = () => {
                     via-[#719985]
                     to-transparent
                     transition-all
-                    duration-700
+                    duration-500
                     group-hover:w-full
                   "
                 />
 
-              </motion.div>
+              </div>
             );
           })}
 
-        </motion.div>
+        </div>
 
       </section>
 
+
       {/* =====================================================
           WHY CHOOSE US
-      ====================================================== */}
+      ===================================================== */}
 
       <section
         className="
@@ -918,20 +659,7 @@ const Pricing = () => {
 
           {/* Header */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            className="mb-14"
-          >
+          <div className="mb-14">
 
             <div
               className="
@@ -954,6 +682,7 @@ const Pricing = () => {
 
             </div>
 
+
             <h2
               className="
                 mt-4
@@ -965,24 +694,18 @@ const Pricing = () => {
                 md:text-4xl
               "
             >
-              More Than Just
+              More Than Just{" "}
               <span className="text-[#709982]">
-                {" "}A Website.
+                A Website.
               </span>
             </h2>
 
-          </motion.div>
+          </div>
+
 
           {/* Guarantees */}
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            variants={containerVariants}
+          <div
             className="
               grid
               grid-cols-1
@@ -996,29 +719,21 @@ const Pricing = () => {
               const Icon = item.icon;
 
               return (
-                <motion.div
+                <div
                   key={item.title}
-                  variants={cardVariants}
-                  whileHover={{
-                    y: -5,
-                  }}
                   className="
                     group
                     border
                     border-white/[0.06]
                     bg-[#070D0A]
                     p-7
-                    transition-all
-                    duration-500
+                    transition-colors
+                    duration-300
                     hover:border-[#466A55]/40
                   "
                 >
 
-                  <motion.div
-                    whileHover={{
-                      scale: 1.05,
-                      rotate: 3,
-                    }}
+                  <div
                     className="
                       flex
                       h-12
@@ -1032,15 +747,12 @@ const Pricing = () => {
                   >
 
                     <Icon
-                      className="
-                        h-5
-                        w-5
-                        text-[#659179]
-                      "
+                      className="h-5 w-5 text-[#659179]"
                       strokeWidth={1.3}
                     />
 
-                  </motion.div>
+                  </div>
+
 
                   <h3
                     className="
@@ -1053,6 +765,7 @@ const Pricing = () => {
                     {item.title}
                   </h3>
 
+
                   <p
                     className="
                       mt-3
@@ -1063,6 +776,7 @@ const Pricing = () => {
                   >
                     {item.description}
                   </p>
+
 
                   <div
                     className="
@@ -1076,19 +790,20 @@ const Pricing = () => {
                     "
                   />
 
-                </motion.div>
+                </div>
               );
             })}
 
-          </motion.div>
+          </div>
 
         </div>
 
       </section>
 
+
       {/* =====================================================
           CUSTOM PROJECT CTA
-      ====================================================== */}
+      ===================================================== */}
 
       <section
         className="
@@ -1102,22 +817,7 @@ const Pricing = () => {
 
         <div className="mx-auto max-w-5xl">
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
+          <div
             className="
               relative
               overflow-hidden
@@ -1130,18 +830,9 @@ const Pricing = () => {
             "
           >
 
-            {/* Animated glow */}
+            {/* Static Glow */}
 
-            <motion.div
-              animate={{
-                scale: [1, 1.15, 1],
-                opacity: [0.02, 0.08, 0.02],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+            <div
               className="
                 pointer-events-none
                 absolute
@@ -1152,12 +843,13 @@ const Pricing = () => {
                 -translate-x-1/2
                 -translate-y-1/2
                 rounded-full
-                bg-[#0D412D]
+                bg-[#0D412D]/10
                 blur-[120px]
               "
             />
 
-            {/* Corners */}
+
+            {/* Corner Decorations */}
 
             <div
               className="
@@ -1185,6 +877,7 @@ const Pricing = () => {
               "
             />
 
+
             <Sparkles
               className="
                 relative
@@ -1195,6 +888,7 @@ const Pricing = () => {
               "
               strokeWidth={1.3}
             />
+
 
             <h2
               className="
@@ -1208,6 +902,7 @@ const Pricing = () => {
             >
               Need Something Custom?
             </h2>
+
 
             <p
               className="
@@ -1225,10 +920,10 @@ const Pricing = () => {
               a custom scope around your exact requirements.
             </p>
 
+
             <Link
               to="/contact"
               className="
-                group
                 relative
                 mt-8
                 inline-flex
@@ -1242,10 +937,8 @@ const Pricing = () => {
                 text-sm
                 font-medium
                 text-[#E2EAE5]
-                shadow-[0_15px_50px_rgba(15,58,40,0.25)]
-                transition-all
+                transition-colors
                 duration-300
-                hover:-translate-y-1
                 hover:border-[#719B84]/50
                 hover:bg-[#1A3E30]
               "
@@ -1254,19 +947,13 @@ const Pricing = () => {
               Discuss Your Project
 
               <ArrowRight
-                className="
-                  h-4
-                  w-4
-                  transition-transform
-                  duration-300
-                  group-hover:translate-x-1
-                "
+                className="h-4 w-4"
                 strokeWidth={1.4}
               />
 
             </Link>
 
-          </motion.div>
+          </div>
 
         </div>
 
@@ -1274,6 +961,4 @@ const Pricing = () => {
 
     </main>
   );
-};
-
-export default Pricing;
+}
