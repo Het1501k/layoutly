@@ -20,6 +20,7 @@ const projects = [
     description:
       "A scalable frontend architecture for a high-volume boutique fashion retailer.",
     category: "E-commerce",
+    filter: "Frontend",
     metric: "+45% Conversion",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCsg1TSJ6w7Pcvwr5VK1J2S-9MGCFrG2mLlEFzNQv6lUgb2Uv3jByXaVYkuvngNytAT-ecS80iFKzu1AY9Yvik_cqNCyRj0CgeNMT8JFN6cwFcodhKnCbGv1VsgEks-Pnj6ouAQXdyT5HgBBEIyMlXGlY4uPTtvQfQ_rc4INZIFPkGrajFzgWyQbt6rU2aAR0mUzU35qRKHn4v7OrNld-psVBHnTNkhPuoZjn1v4vq73UiFQHTiAbxN",
@@ -30,6 +31,7 @@ const projects = [
     description:
       "Secure, responsive web application for B2B financial reconciliation.",
     category: "FinTech",
+    filter: "Full-Stack",
     metric: "Zero Downtime",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBlkmlKGGn6kvvM7nbv-C0iDCPnfHEb2gS7Zdd1j2II8tExEdcI7N2KucXLpRvZ_jCzJx7MS6oBi9QZIxdfhMlMfM20jpxXfi4MfguiXosi2LuWFLvXwmYW-Crxyb2fB7bqYRm860B_dw0sLJbXvM1e4gtSahlTX1MHrdkns8XIZH9cvXJxZxoP8lK4QFqRzffUEbnUS_X9LnlEGh4O0Bczm7gx7FF-Q5Q3vy1VYwU2TnCD7AIbjsMQ",
@@ -40,6 +42,7 @@ const projects = [
     description:
       "Rapid MVP development for a telehealth patient onboarding platform.",
     category: "Healthcare MVP",
+    filter: "MVP",
     metric: "4 Weeks to Launch",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBdGOzRHe9ZPwlSWQApaMowm2G332aDWHmKW7GXPhE_obJ9dDdkGvQJOibreAqfZKo3j2SvA5naQ4cuUM9AZn9_yUybyr95Hr4EXoWvGvtyFIymiFIVNnMfW7xprApdnciGuS_eS593k4NeynjvQn1x2SWmVgXg18l4Tg0_Y_0cZwcWZ2KRycQjblK220XcS0jRqBuh4jGZ_1cKdnbM8vBGpUeIThXxDSCczdd-3srrE5vLqC_2n_Ex",
@@ -50,6 +53,7 @@ const projects = [
     description:
       "Full-stack rebuild of a cloud infrastructure management tool.",
     category: "SaaS",
+    filter: "Full-Stack",
     metric: "3x Faster Load",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDapKuczb7hVBTXhtSC1KTj5-oFCnz1ylNWX18PgZf-gW3bYA1xMVB8udcsAG1Bj1d6nxRZzw1boate5n28cAF8XKhwxVoKhMLImqBFf6_1uSVAnYy9DambkW9Hqs2SMBvah7ZPohMEhCFFZQAUQP64XRAnSs3FEG5uqPrmCrEb99o-DPg2-d9m8YOCJFvlClXtEjh6Ps8jCxll6ObGGBy906K1_4MY9zmBF4hrawtFKC5OdKiXGh81",
@@ -60,6 +64,7 @@ const projects = [
     description:
       "Comprehensive brand identity and component library for a tech consultancy.",
     category: "Brand Design",
+    filter: "Design",
     metric: "System Adoption",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDZg0EEsD2yddV2oXOyxSUwf4zj0YaY7YfQrLK96aKxckddqeqX2KxkZz4dQr3OkSVSlPRwy0Xw_Vtiqg-Zf7rKGsqrSeFqdNUj8NIUMMP11qb3uyTk4joKH-XmDP_-yHlL0cPCAeGRUUyf-k4FPD632gPL0hjn1fhYrJCnXnIiD1rUDkEEc1iW_ik3yN17TcvcSnYJHfIAwATHk6O32IRJWku1xvwnVaV1dIdS6R6enF-sWeJ9BMya",
@@ -70,6 +75,7 @@ const projects = [
     description:
       "Real-time tracking interface and admin dashboard for supply chain management.",
     category: "Logistics",
+    filter: "Frontend",
     metric: "Award Winning",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAX6N0chS5vK9QCPeWPeMA8i-qYKcAh9AApH6LCPWgwGieLD9FaxEUjzZymVXBAtGilSMkB4qRoFzzMc5uta_GdPLWmeVGIXKi17XysUcNaN-y-qOswzUF07Ne3hSJcFFHpxo4rIBhTzx8HWG0F2r9BTUHkgP8Kulzy_tUyuKA8RwAW-vVYQlaxpptcWb2_NWkYJ_Bg0c4Fmf0AvCDmYLFNski_-_8bKrnRBDCXrQrwdIUK7Wp0MeS-",
@@ -362,14 +368,9 @@ const OurWork = () => {
       return projects;
     }
 
-    const search = activeFilter.toLowerCase();
-
-    return projects.filter((project) => {
-      return (
-        project.category.toLowerCase().includes(search) ||
-        project.title.toLowerCase().includes(search)
-      );
-    });
+    return projects.filter(
+      (project) => project.filter === activeFilter
+    );
   }, [activeFilter]);
 
   return (
@@ -743,7 +744,6 @@ const OurWork = () => {
       >
         {filteredProjects.length > 0 ? (
           <div
-            key={activeFilter}
             className="
               grid
               grid-cols-1

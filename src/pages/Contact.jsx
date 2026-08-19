@@ -802,83 +802,85 @@ const Contact = () => {
                   <ArrowDown />
                 </div>
               </div>
+{/* Budget */}
 
-              {/* Budget */}
+<div>
+  <FieldLabel
+    icon={WalletCards}
+    htmlFor="budget"
+  >
+    Estimated Budget
+  </FieldLabel>
 
-              <div>
-                <FieldLabel
-                  icon={WalletCards}
-                  htmlFor="budget"
-                >
-                  Estimated Budget
-                </FieldLabel>
+  <div className="relative">
 
-                <div className="relative">
+    <select
+      id="budget"
+      required
+      value={formData.budget}
+      onChange={handleChange}
+      className="
+        w-full
+        appearance-none
+        border
+        border-white/[0.08]
+        bg-[#09100C]
+        px-4
+        py-3.5
+        pr-12
+        text-sm
+        text-[#DCE5E0]
+        outline-none
+        transition-colors
+        duration-200
+        focus:border-[#527D63]
+        focus:bg-[#0B1510]
+        focus:shadow-[0_0_0_3px_rgba(65,100,79,0.08)]
+      "
+    >
 
-                  <select
-                    id="budget"
-                    required
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="
-                      w-full
-                      appearance-none
-                      border
-                      border-white/[0.08]
-                      bg-[#09100C]
-                      px-4
-                      py-3.5
-                      pr-12
-                      text-sm
-                      text-[#DCE5E0]
-                      outline-none
-                      transition-colors
-                      duration-200
-                      focus:border-[#527D63]
-                      focus:bg-[#0B1510]
-                      focus:shadow-[0_0_0_3px_rgba(65,100,79,0.08)]
-                    "
-                  >
-                    <option
-                      disabled
-                      value=""
-                      className="bg-[#09100C]"
-                    >
-                      Select budget range
-                    </option>
+      <option
+        disabled
+        value=""
+        className="bg-[#09100C]"
+      >
+        Select budget range
+      </option>
 
-                    <option
-                      value="less_5k"
-                      className="bg-[#09100C]"
-                    >
-                      Less than ₹5,000
-                    </option>
+      <option
+        value="less_5k"
+        className="bg-[#09100C]"
+      >
+        Less than $350
+      </option>
 
-                    <option
-                      value="5k_15k"
-                      className="bg-[#09100C]"
-                    >
-                      ₹5,000 – ₹15,000
-                    </option>
+      <option
+        value="5k_15k"
+        className="bg-[#09100C]"
+      >
+        $350 – $1,199
+      </option>
 
-                    <option
-                      value="15k_35k"
-                      className="bg-[#09100C]"
-                    >
-                      ₹15,000 – ₹35,000
-                    </option>
+      <option
+        value="15k_35k"
+        className="bg-[#09100C]"
+      >
+      $1,199- $2,500
+      </option>
 
-                    <option
-                      value="35k_plus"
-                      className="bg-[#09100C]"
-                    >
-                      ₹35,000+
-                    </option>
-                  </select>
+      <option
+        value="35k_plus"
+        className="bg-[#09100C]"
+      >
+        $3,500+
+      </option>
 
-                  <ArrowDown />
-                </div>
-              </div>
+    </select>
+
+    <ArrowDown />
+
+  </div>
+</div>
 
               {/* Details */}
 
