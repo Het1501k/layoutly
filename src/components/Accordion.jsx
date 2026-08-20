@@ -1,26 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Accordion = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="glass-card shadow-ambient rounded-xl px-lg pt-lg overflow-hidden border-none">
+    <div className="w-full overflow-hidden">
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left pb-lg focus:outline-none"
+        className="
+          group
+          flex
+          w-full
+          items-center
+          justify-between
+          gap-6
+          bg-transparent
+          py-6
+          text-left
+          focus:outline-none
+        "
         aria-expanded={isOpen}
       >
-        <span className="font-headline-md text-body-lg md:text-headline-md text-on-surface">
+        {/* Question */}
+        <span
+          className="
+            font-headline-md
+            text-body-lg
+            md:text-headline-md
+            font-medium
+            leading-snug
+            tracking-[-0.01em]
+            text-[#DCE5E0]
+            transition-colors
+            duration-300
+            group-hover:text-[#A3BBAE]
+          "
+        >
           {title}
         </span>
-        <span className="material-symbols-outlined text-primary transition-transform duration-300" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+
+        {/* Arrow */}
+        <span
+          className="
+            material-symbols-outlined
+            shrink-0
+            text-[#719783]
+            transition-all
+            duration-300
+            group-hover:text-[#9BB8A8]
+          "
+          style={{
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        >
           expand_more
         </span>
       </button>
-      <div 
-        className={`font-body-md text-body-md text-on-surface-variant transition-all duration-300 ease-out ${
-          isOpen ? 'max-h-[500px] opacity-100 pb-lg' : 'max-h-0 opacity-0'
-        } overflow-hidden`}
+
+      {/* Answer */}
+      <div
+        className={`
+          overflow-hidden
+          font-body-md
+          text-body-md
+          text-[#6E7C74]
+          transition-all
+          duration-300
+          ease-out
+          ${
+            isOpen
+              ? "max-h-[500px] opacity-100 pb-6"
+              : "max-h-0 opacity-0"
+          }
+        `}
       >
         {children}
       </div>

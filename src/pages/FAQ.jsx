@@ -24,17 +24,17 @@ const faqs = [
   {
     question: "How much does a UI/UX design package cost?",
     answer:
-      "Our UI/UX design package starts at ₹5,000 (one-time). This includes user research, wireframes, high-fidelity prototypes, and a complete design system in Figma. Perfect for validating your product idea.",
+      "Our UI/UX design package starts at $350 (one-time). This includes user research, wireframes, high-fidelity prototypes, and a complete design system in Figma. Perfect for validating your product idea.",
   },
   {
     question: "What's included in your static website development?",
     answer:
-      "For ₹15,000, you get a fully responsive, SEO-optimized static website with custom HTML/CSS/JavaScript, contact forms, Google Analytics integration, and optional basic CMS. Delivery in 2 weeks.",
+      "Our static website development package starts at $1,199. You get a fully responsive, SEO-optimized website with custom development, contact forms, analytics integration, and a polished modern design. Delivery timeline depends on the project scope.",
   },
   {
     question: "What about dynamic web applications?",
     answer:
-      "Our dynamic development package starts at ₹35,000 and includes a full-stack React/Next.js application with Node.js/Python backend, database, user authentication, payment integration, and admin dashboard. Delivery in 4-6 weeks.",
+      "Our dynamic web application package starts at $2,999 and includes a full-stack React/Next.js application with Node.js or Python backend, database integration, user authentication, payment integration, and an admin dashboard. Delivery timeline depends on the project scope and complexity.",
   },
   {
     question: "Who owns the intellectual property?",
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "What is your typical timeline for a project?",
     answer:
-      "UI/UX design takes 1-2 weeks, static websites 2 weeks, and dynamic web applications 4-6 weeks. We scope each project clearly before we start, so there are no surprises.",
+      "UI/UX design typically takes 1–2 weeks, static websites around 2–3 weeks, and dynamic web applications around 4–6 weeks. We scope each project clearly before we start, so there are no surprises.",
   },
   {
     question: "Do you offer post-launch support?",
@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "What technology stack do you use?",
     answer:
-      "We use modern, scalable technologies: React/Next.js for frontend, Node.js or Python (Django/Flask) for backend, and MongoDB/PostgreSQL for databases. We also work with cloud platforms like Vercel, AWS, and Netlify.",
+      "We use modern, scalable technologies: React/Next.js for frontend, Node.js or Python for backend, and MongoDB/PostgreSQL for databases. We also work with cloud platforms like Vercel, AWS, and Netlify.",
   },
   {
     question: "Can you integrate with existing systems?",
@@ -64,7 +64,7 @@ const faqs = [
   {
     question: "What are your payment terms?",
     answer:
-      "We offer flexible milestone-based payments. Typically, a 30% deposit to kickstart, with the remaining balance tied to deliverables. We're transparent about every step.",
+      "We offer flexible milestone-based payments. Typically, a 30% deposit to kickstart, with the remaining balance tied to project deliverables. We're transparent about every step.",
   },
 ];
 
