@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -11,7 +11,6 @@ import {
   Palette,
   Rocket,
   ShieldCheck,
-  Sparkles,
   Terminal,
   Zap,
   Cloud,
@@ -19,70 +18,174 @@ import {
   Boxes,
   MonitorSmartphone,
   Quote,
+  Sparkles,
 } from "lucide-react";
-
-import {
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 /* =========================================================
-   TECHNOLOGIES
+   SEO
+========================================================= */
+
+const SEO = () => {
+  useEffect(() => {
+    const title =
+      "Layoutly — Web Designer, UI/UX Designer & Web Developer";
+
+    const description =
+      "Layoutly creates premium websites, UI/UX designs and digital experiences for ambitious brands, startups and businesses. Custom web design, React development, Figma to code and modern digital products.";
+
+    const keywords = [
+      "web designer",
+      "web design",
+      "website designer",
+      "freelance web designer",
+      "UI UX designer",
+      "UI/UX design",
+      "web developer",
+      "freelance web developer",
+      "website development",
+      "React developer",
+      "React web developer",
+      "frontend developer",
+      "full stack developer",
+      "custom website design",
+      "responsive web design",
+      "modern website design",
+      "premium website design",
+      "landing page design",
+      "Figma to React",
+      "UI UX development",
+      "digital product design",
+      "website design agency",
+      "freelance UI UX designer",
+      "custom website development",
+      "business website design",
+      "startup website design",
+      "creative web designer",
+      "professional web designer",
+      "web development freelancer",
+      "React website development",
+    ];
+
+    document.title = title;
+
+    const setMeta = (name, content, attribute = "name") => {
+      let element = document.head.querySelector(
+        `meta[${attribute}="${name}"]`
+      );
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, name);
+        document.head.appendChild(element);
+      }
+
+      element.setAttribute("content", content);
+    };
+
+    setMeta("description", description);
+    setMeta("keywords", keywords.join(", "));
+    setMeta("robots", "index, follow");
+    setMeta("author", "Layoutly");
+
+    setMeta("og:title", title, "property");
+    setMeta("og:description", description, "property");
+    setMeta("og:type", "website", "property");
+    setMeta("og:site_name", "Layoutly", "property");
+    setMeta("og:url", window.location.href, "property");
+
+    setMeta("twitter:card", "summary_large_image");
+    setMeta("twitter:title", title);
+    setMeta("twitter:description", description);
+
+    let canonical = document.head.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+
+    canonical.href = window.location.href;
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${window.location.origin}/#organization`,
+          name: "Layoutly",
+          url: window.location.origin,
+          description,
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${window.location.origin}/#website`,
+          name: "Layoutly",
+          url: window.location.origin,
+          description,
+          publisher: {
+            "@id": `${window.location.origin}/#organization`,
+          },
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": `${window.location.origin}/#service`,
+          name: "Layoutly",
+          url: window.location.origin,
+          description,
+          serviceType: [
+            "Web Design",
+            "UI/UX Design",
+            "Website Development",
+            "React Development",
+            "Frontend Development",
+            "Full-Stack Development",
+            "Digital Product Design",
+          ],
+        },
+      ],
+    };
+
+    let schema = document.getElementById("layoutly-schema");
+
+    if (!schema) {
+      schema = document.createElement("script");
+      schema.id = "layoutly-schema";
+      schema.type = "application/ld+json";
+      document.head.appendChild(schema);
+    }
+
+    schema.textContent = JSON.stringify(structuredData);
+
+    return () => {
+      schema?.remove();
+    };
+  }, []);
+
+  return null;
+};
+
+/* =========================================================
+   DATA
 ========================================================= */
 
 const technologies = [
-  {
-    icon: Code2,
-    name: "React",
-  },
-  {
-    icon: Layers3,
-    name: "Next.js",
-  },
-  {
-    icon: Code2,
-    name: "Java",
-  },
-  {
-    icon: Server,
-    name: "Spring Boot",
-  },
-  {
-    icon: Zap,
-    name: "Tailwind CSS",
-  },
-  {
-    icon: PenTool,
-    name: "Figma",
-  },
-  {
-    icon: Terminal,
-    name: "Node.js",
-  },
-  {
-    icon: Database,
-    name: "MySQL",
-  },
-  {
-    icon: Database,
-    name: "MongoDB",
-  },
-  {
-    icon: Boxes,
-    name: "Docker",
-  },
-  {
-    icon: Cloud,
-    name: "AWS",
-  },
-  {
-    icon: Code2,
-    name: "TypeScript",
-  },
+  { icon: Code2, name: "React" },
+  { icon: Layers3, name: "Next.js" },
+  { icon: Code2, name: "Java" },
+  { icon: Server, name: "Spring Boot" },
+  { icon: Zap, name: "Tailwind CSS" },
+  { icon: PenTool, name: "Figma" },
+  { icon: Terminal, name: "Node.js" },
+  { icon: Database, name: "MySQL" },
+  { icon: Database, name: "MongoDB" },
+  { icon: Boxes, name: "Docker" },
+  { icon: Cloud, name: "AWS" },
+  { icon: Code2, name: "TypeScript" },
 ];
-
-/* =========================================================
-   SERVICES
-========================================================= */
 
 const services = [
   {
@@ -90,7 +193,7 @@ const services = [
     icon: Palette,
     title: "Design → Code",
     description:
-      "Figma designs transformed into production-ready React components. Every detail, interaction, and responsive state is faithfully reproduced.",
+      "Figma designs transformed into production-ready interfaces with obsessive attention to typography, spacing, responsiveness and interaction.",
     tags: ["Pixel-perfect", "Responsive"],
   },
   {
@@ -98,7 +201,7 @@ const services = [
     icon: Server,
     title: "Full-Stack Engineering",
     description:
-      "Robust Java backends, secure REST APIs, and optimized databases designed for scalability, performance, and long-term maintainability.",
+      "Scalable applications, robust APIs and thoughtful architecture built around performance, security and long-term maintainability.",
     tags: ["Scalable", "Secure"],
   },
   {
@@ -106,54 +209,49 @@ const services = [
     icon: Rocket,
     title: "MVP Launch",
     description:
-      "From concept to market with a streamlined development process designed for startups that need rapid validation and investor-ready products.",
-    tags: ["Fast delivery", "Investor-ready"],
+      "From first idea to live product. A focused process for founders who need to validate quickly without compromising the experience.",
+    tags: ["Fast delivery", "Launch-ready"],
   },
 ];
-
-/* =========================================================
-   PROCESS
-========================================================= */
 
 const process = [
   {
     number: "01",
     title: "Design",
     description:
-      "We establish visual tokens, component systems, responsive layouts, and interactive prototypes before development begins.",
+      "We establish the visual language, component system, responsive layouts and interaction direction before development begins.",
     icons: [Palette, PenTool, Layers3],
   },
   {
     number: "02",
     title: "Build",
     description:
-      "Our engineering process translates the approved design into robust React interfaces and scalable backend architecture.",
+      "The approved experience becomes a robust digital product through clean React interfaces and scalable engineering.",
     icons: [Code2, Terminal, Database],
   },
   {
     number: "03",
     title: "Launch",
     description:
-      "Rigorous QA, deployment workflows, performance optimization, and production checks ensure everything is ready for users.",
+      "Performance, responsiveness, QA and deployment checks bring the final experience into the real world.",
     icons: [Rocket, ShieldCheck, MonitorSmartphone],
   },
 ];
 
 /* =========================================================
-   ANIMATION VARIANTS
+   ANIMATIONS
 ========================================================= */
 
 const fadeUp = {
   hidden: {
     opacity: 0,
-    y: 45,
+    y: 35,
   },
-
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.9,
+      duration: 0.85,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -162,14 +260,13 @@ const fadeUp = {
 const fadeLeft = {
   hidden: {
     opacity: 0,
-    x: -55,
+    x: -35,
   },
-
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1,
+      duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -178,14 +275,13 @@ const fadeLeft = {
 const fadeRight = {
   hidden: {
     opacity: 0,
-    x: 55,
+    x: 35,
   },
-
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1,
+      duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -193,7 +289,6 @@ const fadeRight = {
 
 const stagger = {
   hidden: {},
-
   visible: {
     transition: {
       staggerChildren: 0.1,
@@ -212,7 +307,7 @@ const SectionReveal = ({ children, className = "" }) => {
       whileInView="visible"
       viewport={{
         once: true,
-        amount: 0.15,
+        amount: 0.12,
       }}
       variants={stagger}
       className={className}
@@ -223,60 +318,43 @@ const SectionReveal = ({ children, className = "" }) => {
 };
 
 /* =========================================================
-   TECH GRID
+   ATMOSPHERE
 ========================================================= */
 
-const TechGrid = ({ opacity = "opacity-[0.045]" }) => {
+const Atmosphere = ({ opacity = 0.45 }) => {
   return (
-    <div
-      className={`pointer-events-none absolute inset-0 ${opacity}`}
-      style={{
-        backgroundImage: `
-          linear-gradient(
-            rgba(118,155,137,0.55) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            90deg,
-            rgba(118,155,137,0.55) 1px,
-            transparent 1px
-          )
-        `,
-        backgroundSize: "58px 58px",
-      }}
-    />
+    <>
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          opacity,
+          backgroundImage:
+            "radial-gradient(rgba(255,255,255,0.55) 0.7px, transparent 0.7px)",
+          backgroundSize: "34px 34px",
+          maskImage:
+            "linear-gradient(to bottom, black, transparent 90%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black, transparent 90%)",
+        }}
+      />
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/[0.08]" />
+    </>
   );
 };
 
 /* =========================================================
-   FLOATING PARTICLES
+   GLASS PANEL
 ========================================================= */
 
-const Particles = () => {
-  // Static particles: keeps the visual texture without 35 independent
-  // infinite Framer Motion animations running at the same time.
-  const particles = Array.from({ length: 16 });
-
+const GlassPanel = ({ children, className = "" }) => {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {particles.map((_, index) => {
-        const left = (index * 37) % 100;
-        const top = (index * 61) % 100;
-        const size = index % 4 === 0 ? 2 : 1;
+    <div
+      className={`relative overflow-hidden rounded-[28px] border border-white/[0.09] bg-white/[0.025] backdrop-blur-xl ${className}`}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.055] via-transparent to-transparent" />
 
-        return (
-          <span
-            key={index}
-            className="absolute rounded-full bg-[#719C87]/40"
-            style={{
-              left: `${left}%`,
-              top: `${top}%`,
-              width: size,
-              height: size,
-            }}
-          />
-        );
-      })}
+      <div className="relative z-10">{children}</div>
     </div>
   );
 };
@@ -286,637 +364,87 @@ const Particles = () => {
 ========================================================= */
 
 const Home = () => {
-  // Mouse parallax was intentionally removed from the production version.
-  // It caused continuous spring updates and unnecessary work on every mouse move.
-
   return (
-    <main className="min-h-screen overflow-hidden bg-[#030605] text-[#E8EEE9] [contain:paint]">
+    <main
+      className="min-h-screen overflow-hidden bg-[#031018] text-white"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
+      <SEO />
 
       {/* =====================================================
           HERO
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          min-h-screen
-          overflow-hidden
-          bg-[#030605]
-        "
-      >
-
-        {/* ===================================================
-            BACKGROUND
-        ================================================== */}
-
-        <div className="pointer-events-none absolute inset-0">
-
-          {/* Main green atmosphere */}
-
-          <motion.div
-            className="
-              absolute
-              h-[700px]
-              w-[700px]
-              -translate-x-1/2
-              -translate-y-1/2
-              rounded-full
-              bg-[#103A2B]/20
-              blur-[150px]
-            "
-          />
-
-          {/* Deep blue atmosphere */}
-
-          <div className="
-              absolute
-              right-[-180px]
-              top-[10%]
-              h-[600px]
-              w-[600px]
-              rounded-full
-              bg-[#092631]/25
-              blur-[150px]
-            "
-          />
-
-          {/* Bottom forest glow */}
-
-          <div className="
-              absolute
-              bottom-[-300px]
-              left-[25%]
-              h-[600px]
-              w-[600px]
-              rounded-full
-              bg-[#0C3326]
-              blur-[150px]
-            "
-          />
-
-          <TechGrid opacity="opacity-[0.035]" />
-
-          <Particles />
-
-          {/* Horizontal technical lines */}
-
-          <div
-            className="
-              absolute
-              left-0
-              right-0
-              top-[30%]
-              h-px
-              bg-gradient-to-r
-              from-transparent
-              via-[#315343]/25
-              to-transparent
-            "
-          />
-
-          <div
-            className="
-              absolute
-              left-0
-              right-0
-              top-[68%]
-              h-px
-              bg-gradient-to-r
-              from-transparent
-              via-[#315343]/20
-              to-transparent
-            "
-          />
-        </div>
-
-        {/* ===================================================
-            GEOMETRIC LEFT
-        ================================================== */}
-
-        <motion.div
-          className="
-            pointer-events-none
-            absolute
-            left-[5%]
-            top-[28%]
-            hidden
-            h-72
-            w-72
-            lg:block
-          "
+      <section className="relative min-h-screen overflow-hidden bg-[#092432]">
+        <video
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
         >
-          <div
-            className="
-              absolute
-              inset-0
-              rotate-45
-              border
-              border-[#355847]/20
-            "
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+            type="video/mp4"
           />
+        </video>
 
-          <div
-            className="
-              absolute
-              inset-[22%]
-              rotate-45
-              border
-              border-[#416A55]/15
-            "
-          />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-black/20" />
 
-          <div
-            className="
-              absolute
-              left-1/2
-              top-0
-              h-full
-              w-px
-              bg-[#416A55]/10
-            "
-          />
+       
 
-          <div
-            className="
-              absolute
-              left-0
-              top-1/2
-              h-px
-              w-full
-              bg-[#416A55]/10
-            "
-          />
+        {/* HERO */}
 
-          <div
-            className="
-              absolute
-              right-4
-              top-1/2
-              h-2
-              w-2
-              rounded-full
-              bg-[#65947A]
-              shadow-[0_0_20px_rgba(101,148,122,0.7)]
-            "
-          />
-        </motion.div>
-
-        {/* ===================================================
-            GEOMETRIC RIGHT
-        ================================================== */}
-
-        <motion.div
-          animate={{
-            rotate: [0, 4, 0],
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-            pointer-events-none
-            absolute
-            right-[5%]
-            top-[30%]
-            hidden
-            h-80
-            w-80
-            lg:block
-          "
-        >
-          <div
-            className="
-              absolute
-              inset-0
-              rotate-45
-              border
-              border-[#355847]/20
-            "
-          />
-
-          <div
-            className="
-              absolute
-              inset-[30%]
-              rounded-full
-              border
-              border-[#416A55]/20
-            "
-          />
-
-          <div
-            className="
-              absolute
-              right-0
-              top-1/2
-              h-px
-              w-1/2
-              bg-gradient-to-r
-              from-[#416A55]/20
-              to-transparent
-            "
-          />
-
-          <div
-            className="
-              absolute
-              bottom-5
-              left-5
-              h-2
-              w-2
-              rounded-full
-              bg-[#527E68]
-              shadow-[0_0_20px_rgba(82,126,104,0.7)]
-            "
-          />
-        </motion.div>
-
-        {/* ===================================================
-            HERO CONTENT
-        ================================================== */}
-
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            flex
-            min-h-screen
-            max-w-7xl
-            items-center
-            justify-center
-            px-6
-            pb-20
-            pt-32
-            text-center
-            md:px-10
-          "
-        >
-          <div className="max-w-5xl">
-
-            {/* Eyebrow */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-                          }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                          }}
-              transition={{
-                duration: 0.9,
-                delay: 0.25,
+        <div className="relative z-10 flex min-h-[calc(100vh-96px)] items-center justify-center px-6 pb-32 pt-20 text-center">
+          <div className="mx-auto pt-20 max-w-7xl">
+            <h1
+              className="animate-fade-rise mx-auto max-w-7xl text-5xl font-normal leading-[0.95] tracking-[-2.46px] text-white sm:text-7xl md:text-8xl"
+              style={{
+                fontFamily: "'Instrument Serif', serif",
               }}
-              className="
-                mb-7
-                inline-flex
-                items-center
-                gap-2
-                border
-                border-[#3A5D4B]/30
-                bg-[#09120E]/60
-                px-4
-                py-2
-                text-[10px]
-                uppercase
-                tracking-[0.28em]
-                text-[#779D89]
-                backdrop-blur-sm
-              "
             >
-              <span className="
-                  h-1.5
-                  w-1.5
-                  rounded-full
-                  bg-[#6D9B81]
-                  shadow-[0_0_12px_rgba(109,155,129,0.9)]
-                "
-              />
+              Where{" "}
+              <em className="not-italic text-white/55">
+                dreams
+              </em>{" "}
+              rise
+              <br />
+              <em className="not-italic text-white/55">
+                through the silence.
+              </em>
+            </h1>
 
-              Innovation meets execution
-            </motion.div>
+            <p className="animate-fade-rise-delay mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/65 sm:text-lg">
+              We design and develop premium digital experiences
+              for ambitious brands, founders, and businesses.
+              From thoughtful UI/UX to high-performance web
+              development, we turn ideas into digital spaces
+              people remember.
+            </p>
 
-            {/* Heading */}
-
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{
-                  opacity: 0,
-                  y: 70,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                              }}
-                transition={{
-                  duration: 1.15,
-                  delay: 0.35,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="
-                  font-serif
-                  text-5xl
-                  font-medium
-                  leading-[0.98]
-                  tracking-[-0.045em]
-                  text-[#F0F3F1]
-                  sm:text-6xl
-                  md:text-7xl
-                  lg:text-[92px]
-                "
-              >
-                Build digital
-                <br />
-
-                <span className="relative inline-block">
-                  <span className="relative z-10">
-                    products
-                  </span>
-
-                  <motion.span
-                    initial={{
-                      width: 0,
-                    }}
-                    animate={{
-                      width: "100%",
-                    }}
-                    transition={{
-                      delay: 1.35,
-                      duration: 0.8,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="
-                      absolute
-                      bottom-1
-                      left-0
-                      h-[2px]
-                      bg-gradient-to-r
-                      from-[#406E58]
-                      via-[#6B9A80]
-                      to-transparent
-                    "
-                  />
-                </span>
-
-                <br />
-
-                <span
-                  className="
-                    bg-gradient-to-r
-                    from-[#8FA99C]
-                    via-[#5F8E76]
-                    to-[#395F4E]
-                    bg-clip-text
-                    text-transparent
-                  "
-                >
-                  people remember.
-                </span>
-              </motion.h1>
-            </div>
-
-            {/* Description */}
-
-            <motion.p
-              initial={{
-                opacity: 0,
-                y: 25,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 0.9,
-                duration: 0.8,
-              }}
-              className="
-                mx-auto
-                mt-8
-                max-w-2xl
-                text-base
-                leading-7
-                text-[#7D8B84]
-                md:text-lg
-                md:leading-8
-              "
-            >
-              We design and develop full-stack digital
-              experiences — from pixel-perfect interfaces
-              to scalable backend systems — built to move
-              your business forward.
-            </motion.p>
-
-            {/* CTA */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 1.05,
-                duration: 0.8,
-              }}
-              className="
-                mt-9
-                flex
-                flex-col
-                items-center
-                justify-center
-                gap-3
-                sm:flex-row
-              "
-            >
+            <div className="animate-fade-rise-delay-2 mt-12">
               <Link
                 to="/contact"
-                className="
-                  group
-                  relative
-                  inline-flex
-                  items-center
-                  gap-3
-                  overflow-hidden
-                  border
-                  border-[#4C735F]/40
-                  bg-[#143226]
-                  px-7
-                  py-4
-                  text-sm
-                  font-medium
-                  text-[#E4ECE7]
-                  shadow-[0_15px_45px_rgba(17,55,40,0.25)]
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-[#709A84]/50
-                  hover:bg-[#193D2F]
-                "
+                className="liquid-glass group inline-flex rounded-full px-14 py-5 text-base text-white transition-all duration-300 hover:scale-[1.03]"
               >
-                <motion.span
-                  animate={{
-                    x: ["-150%", "180%"],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    repeatDelay: 4,
-                  }}
-                  className="
-                    absolute
-                    inset-y-0
-                    w-1/3
-                    skew-x-[-20deg]
-                    bg-white/10
-                  "
-                />
-
-                <span className="relative z-10">
-                  Start building
+                <span className="relative z-10 flex items-center gap-3">
+                  Begin Journey
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
-
-                <ArrowUpRight
-                  className="
-                    relative
-                    z-10
-                    h-4
-                    w-4
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                    group-hover:-translate-y-1
-                  "
-                />
               </Link>
-
-              <Link
-                to="/our-work"
-                className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-2
-                  border
-                  border-white/[0.09]
-                  bg-white/[0.025]
-                  px-7
-                  py-4
-                  text-sm
-                  font-medium
-                  text-[#A1ACA6]
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-[#507462]/35
-                  hover:bg-[#0B1510]
-                  hover:text-[#E4EAE7]
-                "
-              >
-                See our work
-
-                <ArrowRight
-                  className="
-                    h-4
-                    w-4
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                  "
-                />
-              </Link>
-            </motion.div>
-
-            {/* Trust indicators */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 1.35,
-                duration: 0.7,
-              }}
-              className="
-                mt-10
-                flex
-                flex-wrap
-                items-center
-                justify-center
-                gap-x-6
-                gap-y-3
-                text-[11px]
-                uppercase
-                tracking-[0.12em]
-                text-[#65726B]
-              "
-            >
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[#5D8D75]" />
-                Quality first
-              </span>
-
-              <span className="h-3 w-px bg-white/10" />
-
-              <span className="flex items-center gap-2">
-                <Zap className="h-3.5 w-3.5 text-[#5D8D75]" />
-                Lightning fast
-              </span>
-
-              <span className="h-3 w-px bg-white/10" />
-
-              <span className="flex items-center gap-2">
-                <Sparkles className="h-3.5 w-3.5 text-[#5D8D75]" />
-                Pixel perfect
-              </span>
-            </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* SCROLL */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            delay: 1.8,
-          }}
-          className="
-            absolute
-            bottom-7
-            left-1/2
-            -translate-x-1/2
-          "
-        >
-          <div
-            className="
-              flex
-              flex-col
-              items-center
-              gap-3
-              text-[8px]
-              uppercase
-              tracking-[0.3em]
-              text-[#46534C]
-            "
-          >
-            Scroll to explore
+        <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+          <div className="flex flex-col items-center gap-3 text-[9px] uppercase tracking-[0.3em] text-white/45">
+            <span>Scroll to explore</span>
 
             <motion.div
               animate={{
@@ -928,244 +456,130 @@ const Home = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="w-px bg-[#5E8B74]"
+              className="w-px bg-white/60"
             />
           </div>
-        </motion.div>
-
-        <div className="
-            absolute
-            bottom-0
-            left-1/2
-            h-px
-            w-[35%]
-            -translate-x-1/2
-            bg-gradient-to-r
-            from-transparent
-            via-[#507C65]
-            to-transparent
-          "
-        />
+        </div>
       </section>
 
       {/* =====================================================
-          TECHNOLOGY STACK
+          INTRO / POSITIONING
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
-          border-y
-          border-white/[0.05]
-          bg-[#050907]
-          py-28
-        "
-      >
-        <TechGrid opacity="opacity-[0.025]" />
+      <section className="relative overflow-hidden bg-[#031018] py-32 md:py-44">
+        <Atmosphere opacity={0.3} />
 
-        <div
-          className="
-            pointer-events-none
-            absolute
-            left-1/2
-            top-0
-            h-[500px]
-            w-[800px]
-            -translate-x-1/2
-            rounded-full
-            bg-[#0B3426]/10
-            blur-[130px]
-          "
-        />
-
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            max-w-7xl
-            px-6
-            md:px-10
-          "
-        >
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
           <SectionReveal>
             <motion.div
               variants={fadeUp}
-              className="mb-14 text-center"
+              className="grid gap-14 md:grid-cols-[0.7fr_1.3fr] md:items-end"
             >
-              <span
-                className="
-                  text-[10px]
-                  uppercase
-                  tracking-[0.3em]
-                  text-[#65927B]
-                "
-              >
-                Our tech stack
-              </span>
+              <div>
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                  <span className="h-px w-8 bg-white/30" />
+                  01 — The studio
+                </div>
+
+                <p className="mt-7 max-w-xs text-sm leading-7 text-white/45">
+                  A digital studio for brands that care about
+                  how their ideas feel, not just how they function.
+                </p>
+              </div>
 
               <h2
-                className="
-                  mt-4
-                  font-serif
-                  text-3xl
-                  font-medium
-                  tracking-tight
-                  text-[#E8EEEA]
-                  md:text-5xl
-                "
+                className="text-4xl font-normal leading-[1.02] tracking-tight text-white sm:text-5xl md:text-7xl"
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                }}
               >
-                Technologies we build with.
+                We build digital experiences
+                <span className="text-white/35">
+                  {" "}
+                  with clarity, character and intent.
+                </span>
               </h2>
+            </motion.div>
+          </SectionReveal>
+        </div>
+      </section>
 
-              <p
-                className="
-                  mx-auto
-                  mt-4
-                  max-w-2xl
-                  text-sm
-                  leading-7
-                  text-[#69766F]
-                  md:text-base
-                "
-              >
-                Modern tools and proven technologies used
-                to create fast, scalable and reliable digital
-                products.
+      {/* =====================================================
+          TECHNOLOGY
+      ====================================================== */}
+
+      <section className="relative overflow-hidden bg-[#061923] py-28 md:py-36">
+        <Atmosphere opacity={0.25} />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
+          <SectionReveal>
+            <motion.div
+              variants={fadeUp}
+              className="mb-14 flex flex-col justify-between gap-8 md:flex-row md:items-end"
+            >
+              <div>
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                  <span className="h-px w-8 bg-white/30" />
+                  02 — The tools
+                </div>
+
+                <h2
+                  className="mt-5 max-w-2xl text-4xl font-normal leading-none text-white md:text-6xl"
+                  style={{
+                    fontFamily: "'Instrument Serif', serif",
+                  }}
+                >
+                  Built with
+                  <br />
+                  <span className="text-white/35">
+                    modern technology.
+                  </span>
+                </h2>
+              </div>
+
+              <p className="max-w-sm text-sm leading-7 text-white/40">
+                Carefully selected technologies give every
+                project the flexibility to evolve without
+                sacrificing speed or craft.
               </p>
             </motion.div>
           </SectionReveal>
 
-          {/* Marquee 1 */}
-
-          <div className="relative mb-5 overflow-hidden">
-            <motion.div
-              animate={{
-                x: ["0%", "-50%"],
-              }}
-              transition={{
-                duration: 28,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="flex w-max"
-            >
-              {[...technologies, ...technologies].map(
-                (tech, index) => {
-                  const Icon = tech.icon;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      whileHover={{
-                        y: -5,
-                      }}
-                      className="
-                        mx-2
-                        flex
-                        items-center
-                        gap-3
-                        border
-                        border-white/[0.065]
-                        bg-[#080E0B]/80
-                        px-6
-                        py-4
-                        transition-colors
-                        duration-300
-                        hover:border-[#426953]/40
-                        hover:bg-[#0C1812]
-                      "
-                    >
-                      <Icon
-                        className="
-                          h-5
-                          w-5
-                          text-[#5C8D73]
-                        "
-                        strokeWidth={1.5}
-                      />
-
-                      <span
-                        className="
-                          whitespace-nowrap
-                          text-sm
-                          text-[#A0AAA5]
-                        "
-                      >
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  );
-                }
-              )}
-            </motion.div>
-          </div>
-
-          {/* Marquee 2 */}
-
-          <div className="relative overflow-hidden">
-            <motion.div
-              animate={{
-                x: ["-50%", "0%"],
-              }}
-              transition={{
-                duration: 32,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="flex w-max"
-            >
-              {[
-                ...technologies.slice().reverse(),
-                ...technologies.slice().reverse(),
-              ].map((tech, index) => {
+          <div className="relative">
+            <div className="grid grid-cols-2 border-l border-t border-white/[0.08] sm:grid-cols-3 lg:grid-cols-4">
+              {technologies.map((tech, index) => {
                 const Icon = tech.icon;
 
                 return (
                   <motion.div
-                    key={index}
+                    key={tech.name}
+                    variants={fadeUp}
                     whileHover={{
-                      y: -5,
+                      backgroundColor:
+                        "rgba(255,255,255,0.045)",
                     }}
-                    className="
-                      mx-2
-                      flex
-                      items-center
-                      gap-3
-                      border
-                      border-white/[0.065]
-                      bg-[#080E0B]/80
-                      px-6
-                      py-4
-                      transition-colors
-                      duration-300
-                      hover:border-[#426953]/40
-                      hover:bg-[#0C1812]
-                    "
+                    className="group flex min-h-[125px] items-center gap-4 border-b border-r border-white/[0.08] px-6 transition-colors duration-500 md:px-8"
                   >
-                    <Icon
-                      className="
-                        h-5
-                        w-5
-                        text-[#456C59]
-                      "
-                      strokeWidth={1.5}
-                    />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.025]">
+                      <Icon
+                        className="h-4 w-4 text-white/45 transition-colors duration-300 group-hover:text-white"
+                        strokeWidth={1.4}
+                      />
+                    </div>
 
-                    <span
-                      className="
-                        whitespace-nowrap
-                        text-sm
-                        text-[#89958E]
-                      "
-                    >
-                      {tech.name}
-                    </span>
+                    <div>
+                      <span className="block text-sm text-white/65 transition-colors group-hover:text-white">
+                        {tech.name}
+                      </span>
+
+                      <span className="mt-1 block text-[9px] uppercase tracking-[0.2em] text-white/25">
+                        Technology
+                      </span>
+                    </div>
                   </motion.div>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1174,264 +588,89 @@ const Home = () => {
           PROCESS
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
-          bg-[#030605]
-          py-32
-        "
-      >
-        <TechGrid opacity="opacity-[0.025]" />
+      <section className="relative overflow-hidden bg-[#031018] py-32 md:py-44">
+        <Atmosphere opacity={0.28} />
 
-        <div
-          className="
-            pointer-events-none
-            absolute
-            left-1/2
-            top-0
-            h-full
-            w-px
-            bg-gradient-to-b
-            from-transparent
-            via-[#315343]/10
-            to-transparent
-          "
-        />
-
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            max-w-7xl
-            px-6
-            md:px-10
-          "
-        >
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
           <SectionReveal>
             <motion.div
               variants={fadeUp}
-              className="
-                mx-auto
-                mb-20
-                max-w-2xl
-                text-center
-              "
+              className="mb-20 max-w-3xl"
             >
-              <span
-                className="
-                  text-[10px]
-                  uppercase
-                  tracking-[0.3em]
-                  text-[#65927B]
-                "
-              >
-                Our process
-              </span>
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                <span className="h-px w-8 bg-white/30" />
+                03 — The process
+              </div>
 
               <h2
-                className="
-                  mt-4
-                  font-serif
-                  text-3xl
-                  font-medium
-                  leading-tight
-                  text-[#E8EEEA]
-                  md:text-5xl
-                "
+                className="mt-6 text-5xl font-normal leading-[0.95] tracking-tight text-white md:text-7xl"
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                }}
               >
-                From design system
+                Less noise.
                 <br />
-                to deployment.
+                <span className="text-white/35">
+                  Better work.
+                </span>
               </h2>
-
-              <p
-                className="
-                  mt-5
-                  text-sm
-                  leading-7
-                  text-[#69766F]
-                  md:text-base
-                "
-              >
-                A streamlined process that turns complex
-                requirements into elegant, scalable solutions.
-              </p>
             </motion.div>
 
-            <div
-              className="
-                grid
-                grid-cols-1
-                gap-5
-                md:grid-cols-3
-              "
-            >
+            <div className="space-y-4">
               {process.map((item, index) => (
                 <motion.div
                   key={item.number}
                   variants={fadeUp}
-                  whileHover={{
-                    y: -8,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                  }}
-                  className={`
-                    group
-                    relative
-                    overflow-hidden
-                    border
-                    border-white/[0.07]
-                    bg-[#070C09]
-                    p-7
-                    ${
-                      index === 1
-                        ? "md:translate-y-8"
-                        : ""
-                    }
-                  `}
+                  className="group relative overflow-hidden rounded-[26px] border border-white/[0.08] bg-white/[0.025] p-7 backdrop-blur-xl transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.04] md:p-10"
                 >
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute
-                      -right-16
-                      -top-16
-                      h-40
-                      w-40
-                      rounded-full
-                      bg-[#154A35]/15
-                      blur-3xl
-                    "
-                  />
-
-                  <motion.div
-                    initial={{
-                      scaleX: 0,
-                    }}
-                    whileInView={{
-                      scaleX: 1,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                    transition={{
-                      duration: 1,
-                      delay: index * 0.1,
-                    }}
-                    className="
-                      absolute
-                      left-0
-                      right-0
-                      top-0
-                      h-px
-                      origin-left
-                      bg-gradient-to-r
-                      from-[#4B785F]
-                      to-transparent
-                    "
-                  />
-
-                  <div
-                    className="
-                      relative
-                      mb-8
-                      flex
-                      items-center
-                      justify-between
-                    "
-                  >
+                  <div className="grid gap-8 md:grid-cols-[100px_0.8fr_1.2fr_140px] md:items-center">
                     <span
-                      className="
-                        font-mono
-                        text-xs
-                        tracking-widest
-                        text-[#547A66]
-                      "
+                      className="text-4xl text-white/20"
+                      style={{
+                        fontFamily: "'Instrument Serif', serif",
+                      }}
                     >
                       {item.number}
                     </span>
 
-                    <span
-                      className="
-                        h-2
-                        w-2
-                        rounded-full
-                        bg-[#4B7A61]
-                        opacity-60
-                        shadow-[0_0_12px_rgba(75,122,97,0.7)]
-                      "
-                    />
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.035]">
+                        {React.createElement(item.icons[0], {
+                          className: "h-5 w-5 text-white/60",
+                          strokeWidth: 1.4,
+                        })}
+                      </div>
+
+                      <h3
+                        className="text-3xl text-white"
+                        style={{
+                          fontFamily: "'Instrument Serif', serif",
+                        }}
+                      >
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <p className="max-w-lg text-sm leading-7 text-white/40">
+                      {item.description}
+                    </p>
+
+                    <div className="flex gap-3 md:justify-end">
+                      {item.icons.map((Icon, iconIndex) => (
+                        <div
+                          key={iconIndex}
+                          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02]"
+                        >
+                          <Icon
+                            className="h-3.5 w-3.5 text-white/35"
+                            strokeWidth={1.4}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <div
-                    className="
-                      mb-7
-                      flex
-                      h-12
-                      w-12
-                      items-center
-                      justify-center
-                      border
-                      border-[#3B5E4C]/25
-                      bg-[#0B1711]
-                    "
-                  >
-                    {React.createElement(item.icons[0], {
-                      className:
-                        "h-5 w-5 text-[#66927B]",
-                      strokeWidth: 1.5,
-                    })}
-                  </div>
-
-                  <h3
-                    className="
-                      font-serif
-                      text-2xl
-                      text-[#E2EAE5]
-                    "
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className="
-                      mt-4
-                      text-sm
-                      leading-7
-                      text-[#6F7B75]
-                    "
-                  >
-                    {item.description}
-                  </p>
-
-                  <div
-                    className="
-                      mt-8
-                      flex
-                      gap-5
-                      border-t
-                      border-white/[0.06]
-                      pt-5
-                    "
-                  >
-                    {item.icons.map((Icon, iconIndex) => (
-                      <Icon
-                        key={iconIndex}
-                        className="
-                          h-4
-                          w-4
-                          text-[#455A4E]
-                          transition-colors
-                          duration-300
-                          group-hover:text-[#66927B]
-                        "
-                        strokeWidth={1.5}
-                      />
-                    ))}
-                  </div>
+                  <div className="absolute bottom-0 left-0 h-px w-0 bg-white/50 transition-all duration-700 group-hover:w-full" />
                 </motion.div>
               ))}
             </div>
@@ -1443,142 +682,53 @@ const Home = () => {
           SERVICES
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
-          border-y
-          border-white/[0.045]
-          bg-[#050907]
-          py-32
-        "
-      >
-        <TechGrid opacity="opacity-[0.025]" />
+      <section className="relative overflow-hidden bg-[#061923] py-32 md:py-44">
+        <Atmosphere opacity={0.25} />
 
-        <div className="
-            pointer-events-none
-            absolute
-            left-1/4
-            top-[-200px]
-            h-[500px]
-            w-[500px]
-            rounded-full
-            bg-[#0B3928]/10
-            blur-[140px]
-          " />
-
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            max-w-7xl
-            px-6
-            md:px-10
-          "
-        >
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10">
           <SectionReveal>
-
-            {/* Header */}
-
-            <div
-              className="
-                mb-16
-                flex
-                flex-col
-                justify-between
-                gap-8
-                md:flex-row
-                md:items-end
-              "
-            >
+            <div className="mb-16 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
               <motion.div variants={fadeLeft}>
-                <span
-                  className="
-                    text-[10px]
-                    uppercase
-                    tracking-[0.3em]
-                    text-[#65927B]
-                  "
-                >
-                  Capabilities
-                </span>
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                  <span className="h-px w-8 bg-white/30" />
+                  04 — Capabilities
+                </div>
 
                 <h2
-                  className="
-                    mt-4
-                    font-serif
-                    text-4xl
-                    leading-tight
-                    text-[#E8EEEA]
-                    md:text-6xl
-                  "
+                  className="mt-6 text-5xl font-normal leading-[0.95] text-white md:text-7xl"
+                  style={{
+                    fontFamily: "'Instrument Serif', serif",
+                  }}
                 >
-                  Engineered for
+                  What we
                   <br />
-
-                  <span
-                    className="
-                      bg-gradient-to-r
-                      from-[#94B2A3]
-                      via-[#5D8B73]
-                      to-[#365A4A]
-                      bg-clip-text
-                      text-transparent
-                    "
-                  >
-                    modern teams.
+                  <span className="text-white/35">
+                    create.
                   </span>
                 </h2>
               </motion.div>
 
-              <motion.div variants={fadeRight}>
+              <motion.div
+                variants={fadeRight}
+                className="max-w-sm"
+              >
+                <p className="text-sm leading-7 text-white/40">
+                  Strategy, design and engineering brought
+                  together under one roof — so the final product
+                  feels like one complete thought.
+                </p>
+
                 <Link
                   to="/services"
-                  className="
-                    group
-                    inline-flex
-                    items-center
-                    gap-3
-                    border
-                    border-white/[0.08]
-                    bg-[#080E0B]
-                    px-6
-                    py-3
-                    text-sm
-                    text-[#9CA8A2]
-                    transition-all
-                    duration-300
-                    hover:border-[#4C735E]/40
-                    hover:text-[#DCE5E0]
-                  "
+                  className="group mt-6 inline-flex items-center gap-3 text-sm text-white/65 transition-colors hover:text-white"
                 >
-                  All services
-
-                  <ArrowUpRight
-                    className="
-                      h-4
-                      w-4
-                      transition-transform
-                      duration-300
-                      group-hover:translate-x-1
-                      group-hover:-translate-y-1
-                    "
-                  />
+                  Explore all services
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
                 </Link>
               </motion.div>
             </div>
 
-            {/* Cards */}
-
-            <div
-              className="
-                grid
-                grid-cols-1
-                gap-5
-                md:grid-cols-3
-              "
-            >
+            <div className="grid gap-5 md:grid-cols-3">
               {services.map((service) => {
                 const Icon = service.icon;
 
@@ -1586,227 +736,95 @@ const Home = () => {
                   <motion.div
                     key={service.number}
                     variants={fadeUp}
-                    whileHover={{
-                      y: -8,
-                    }}
-                    className="
-                      group
-                      relative
-                      overflow-hidden
-                      border
-                      border-white/[0.07]
-                      bg-[#070C09]
-                      p-7
-                      transition-colors
-                      duration-500
-                      hover:border-[#416650]/30
-                    "
+                    whileHover={{ y: -6 }}
+                    className="group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-8 backdrop-blur-xl transition-all duration-500 hover:border-white/[0.14] hover:bg-white/[0.04]"
                   >
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                      }}
-                      whileHover={{
-                        opacity: 1,
-                      }}
-                      className="
-                        pointer-events-none
-                        absolute
-                        -right-20
-                        -top-20
-                        h-56
-                        w-56
-                        rounded-full
-                        bg-[#15452F]/15
-                        blur-3xl
-                      "
-                    />
-
-                    <div
-                      className="
-                        absolute
-                        right-0
-                        top-0
-                        h-10
-                        w-10
-                        border-r
-                        border-t
-                        border-[#426752]/20
-                      "
-                    />
-
-                    <div
-                      className="
-                        relative
-                        flex
-                        items-center
-                        justify-between
-                      "
-                    >
+                    <div className="flex items-center justify-between">
                       <span
-                        className="
-                          font-mono
-                          text-[10px]
-                          tracking-[0.25em]
-                          text-[#547664]
-                        "
+                        className="text-3xl text-white/20"
+                        style={{
+                          fontFamily: "'Instrument Serif', serif",
+                        }}
                       >
                         {service.number}
                       </span>
 
-                      <Icon
-                        className="
-                          h-5
-                          w-5
-                          text-[#5D8D74]
-                          transition-transform
-                          duration-500
-                          group-hover:rotate-6
-                          group-hover:scale-110
-                        "
-                        strokeWidth={1.4}
-                      />
-                    </div>
-
-                    <div
-                      className="
-                        relative
-                        mt-10
-                        flex
-                        h-14
-                        w-14
-                        items-center
-                        justify-center
-                        border
-                        border-[#3B604C]/25
-                        bg-[#0A1510]
-                      "
-                    >
-                      <Icon
-                        className="
-                          h-6
-                          w-6
-                          text-[#729B85]
-                        "
-                        strokeWidth={1.3}
-                      />
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.035]">
+                        <Icon
+                          className="h-5 w-5 text-white/55"
+                          strokeWidth={1.4}
+                        />
+                      </div>
                     </div>
 
                     <h3
-                      className="
-                        mt-7
-                        font-serif
-                        text-2xl
-                        text-[#E0E8E3]
-                      "
+                      className="mt-16 text-3xl text-white"
+                      style={{
+                        fontFamily: "'Instrument Serif', serif",
+                      }}
                     >
                       {service.title}
                     </h3>
 
-                    <p
-                      className="
-                        mt-4
-                        min-h-[130px]
-                        text-sm
-                        leading-7
-                        text-[#707C76]
-                      "
-                    >
+                    <p className="mt-5 min-h-[140px] text-sm leading-7 text-white/40">
                       {service.description}
                     </p>
 
-                    <div
-                      className="
-                        mt-6
-                        flex
-                        items-center
-                        gap-3
-                        border-t
-                        border-white/[0.06]
-                        pt-5
-                      "
-                    >
+                    <div className="mt-7 flex flex-wrap gap-2 border-t border-white/[0.07] pt-6">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="
-                            flex
-                            items-center
-                            gap-1.5
-                            text-[10px]
-                            uppercase
-                            tracking-wider
-                            text-[#66776E]
-                          "
+                          className="flex items-center gap-2 rounded-full border border-white/[0.07] bg-white/[0.025] px-3 py-1.5 text-[9px] uppercase tracking-[0.15em] text-white/40"
                         >
-                          <CheckCircle2
-                            className="
-                              h-3
-                              w-3
-                              text-[#4D7B62]
-                            "
-                          />
-
+                          <CheckCircle2 className="h-3 w-3 text-white/45" />
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <motion.div
-                      initial={{
-                        width: "15%",
-                      }}
-                      whileHover={{
-                        width: "70%",
-                      }}
-                      transition={{
-                        duration: 0.5,
-                      }}
-                      className="
-                        absolute
-                        bottom-0
-                        left-0
-                        h-px
-                        bg-gradient-to-r
-                        from-[#5C8E74]
-                        to-transparent
-                      "
-                    />
+                    <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </motion.div>
                 );
               })}
             </div>
+          </SectionReveal>
+        </div>
+      </section>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-14 text-center"
-            >
-              <Link
-                to="/services"
-                className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-3
-                  text-sm
-                  text-[#81958B]
-                  transition-colors
-                  duration-300
-                  hover:text-[#C7D8CF]
-                "
+      {/* =====================================================
+          STATEMENT
+      ====================================================== */}
+
+      <section className="relative overflow-hidden bg-[#031018] py-36 md:py-52">
+        <Atmosphere opacity={0.3} />
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6 text-center md:px-10">
+          <SectionReveal>
+            <motion.div variants={fadeUp}>
+              <Sparkles className="mx-auto h-5 w-5 text-white/35" />
+
+              <p className="mt-8 text-[10px] uppercase tracking-[0.35em] text-white/35">
+                The philosophy
+              </p>
+
+              <h2
+                className="mx-auto mt-8 max-w-5xl text-5xl font-normal leading-[0.95] tracking-tight text-white sm:text-6xl md:text-8xl"
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                }}
               >
-                Explore all services
+                Good design should
+                <br />
+                <span className="text-white/35">
+                  feel inevitable.
+                </span>
+              </h2>
 
-                <ArrowRight
-                  className="
-                    h-4
-                    w-4
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-2
-                  "
-                />
-              </Link>
+              <p className="mx-auto mt-9 max-w-2xl text-sm leading-7 text-white/40 md:text-base">
+                Nothing unnecessary. Nothing accidental.
+                Every visual decision has a reason, and every
+                interaction should move the experience forward.
+              </p>
             </motion.div>
           </SectionReveal>
         </div>
@@ -1816,246 +834,61 @@ const Home = () => {
           TESTIMONIAL
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
-          bg-[#030605]
-          py-32
-        "
-      >
-        <TechGrid opacity="opacity-[0.02]" />
+      <section className="relative overflow-hidden bg-[#061923] py-32 md:py-40">
+        <Atmosphere opacity={0.22} />
 
-        <div className="
-            pointer-events-none
-            absolute
-            left-1/2
-            top-1/2
-            h-[650px]
-            w-[650px]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            bg-[#0C3928]
-            blur-[150px]
-          "
-        />
-
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            max-w-5xl
-            px-6
-            md:px-10
-          "
-        >
+        <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-10">
           <SectionReveal>
-            <motion.div
-              variants={fadeUp}
-              className="
-                relative
-                overflow-hidden
-                border
-                border-[#3C5D4B]/25
-                bg-[#060B08]
-                p-8
-                md:p-14
-              "
-            >
-              <div
-                className="
-                  absolute
-                  left-0
-                  top-0
-                  h-14
-                  w-14
-                  border-l
-                  border-t
-                  border-[#527864]/30
-                "
-              />
-
-              <div
-                className="
-                  absolute
-                  bottom-0
-                  right-0
-                  h-14
-                  w-14
-                  border-b
-                  border-r
-                  border-[#527864]/30
-                "
-              />
-
+            <GlassPanel className="rounded-[32px] p-8 md:p-16">
               <motion.div
-                animate={{
-                  x: ["-100%", "200%"],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  repeatDelay: 5,
-                }}
-                className="
-                  absolute
-                  left-0
-                  top-0
-                  h-px
-                  w-1/3
-                  bg-gradient-to-r
-                  from-transparent
-                  via-[#68947B]
-                  to-transparent
-                "
-              />
-
-              <div className="relative z-10 text-center">
-
-                <motion.div
-                  animate={{
-                    y: [0, -5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="
-                    mx-auto
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-                    border
-                    border-[#456B56]/30
-                    bg-[#0A1710]
-                  "
-                >
+                variants={fadeUp}
+                className="text-center"
+              >
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.035]">
                   <Quote
-                    className="
-                      h-6
-                      w-6
-                      text-[#67937B]
-                    "
+                    className="h-6 w-6 text-white/50"
                     strokeWidth={1.4}
                   />
-                </motion.div>
+                </div>
 
-                <blockquote
-                  className="
-                    mx-auto
-                    mt-9
-                    max-w-3xl
-                  "
-                >
+                <blockquote className="mx-auto mt-10 max-w-4xl">
                   <p
-                    className="
-                      font-serif
-                      text-2xl
-                      leading-relaxed
-                      text-[#DDE5E0]
-                      md:text-3xl
-                    "
+                    className="text-3xl leading-[1.15] text-white md:text-5xl"
+                    style={{
+                      fontFamily: "'Instrument Serif', serif",
+                    }}
                   >
                     “Layoutly didn’t just build what we
                     designed; they improved the architectural
-                    foundation. The transition from our Figma
-                    files to a working React application was
-                    seamless, and the code quality was
-                    exceptional.”
+                    foundation.”
                   </p>
                 </blockquote>
 
-                <motion.div
-                  initial={{
-                    width: 0,
-                  }}
-                  whileInView={{
-                    width: 60,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    duration: 0.8,
-                  }}
-                  className="
-                    mx-auto
-                    mt-9
-                    h-px
-                    bg-gradient-to-r
-                    from-[#3D654F]
-                    to-[#6C997F]
-                  "
-                />
+                <div className="mx-auto mt-10 h-px w-12 bg-white/30" />
 
                 <div className="mt-7">
-
-                  <div
-                    className="
-                      mx-auto
-                      flex
-                      h-14
-                      w-14
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      border-[#527864]/30
-                      bg-[#0D1812]
-                    "
-                  >
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.035]">
                     <span
-                      className="
-                        font-serif
-                        text-lg
-                        text-[#8CAA9B]
-                      "
+                      className="text-lg text-white/70"
+                      style={{
+                        fontFamily: "'Instrument Serif', serif",
+                      }}
                     >
                       HP
                     </span>
                   </div>
 
-                  <h4
-                    className="
-                      mt-4
-                      text-sm
-                      font-medium
-                      text-[#D9E1DC]
-                    "
-                  >
+                  <h4 className="mt-4 text-xs tracking-[0.2em] text-white/65">
                     HET PATEL
                   </h4>
 
-                  <p
-                    className="
-                      mt-1
-                      text-xs
-                      text-[#64716A]
-                    "
-                  >
+                  <p className="mt-1 text-xs text-white/30">
                     Founder
                   </p>
 
-                  <div
-                    className="
-                      mt-4
-                      flex
-                      items-center
-                      justify-center
-                      gap-3
-                      text-[9px]
-                      uppercase
-                      tracking-widest
-                      text-[#53615A]
-                    "
-                  >
+                  <div className="mt-4 flex items-center justify-center gap-3 text-[9px] uppercase tracking-widest text-white/25">
                     <span className="flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#5B8A71]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/45" />
                       Verified partner
                     </span>
 
@@ -2064,8 +897,8 @@ const Home = () => {
                     <span>2026</span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </GlassPanel>
           </SectionReveal>
         </div>
       </section>
@@ -2074,297 +907,96 @@ const Home = () => {
           FINAL CTA
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
-          border-t
-          border-white/[0.05]
-          bg-[#050907]
-          py-28
-        "
-      >
-        <TechGrid opacity="opacity-[0.025]" />
+      <section className="relative overflow-hidden bg-[#031018] py-32 md:py-44">
+        <Atmosphere opacity={0.3} />
 
-        <div className="
-            pointer-events-none
-            absolute
-            left-1/2
-            top-1/2
-            h-[600px]
-            w-[600px]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            bg-[#0E3D2B]
-            blur-[140px]
-          "
-        />
-
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            max-w-6xl
-            px-6
-            md:px-10
-          "
-        >
+        <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-10">
           <SectionReveal>
-            <motion.div
-              variants={fadeUp}
-              className="
-                relative
-                overflow-hidden
-                border
-                border-[#405F4E]/25
-                bg-[#070D0A]
-                p-9
-                md:p-14
-                lg:p-16
-              "
-            >
-              <div className="
-                  pointer-events-none
-                  absolute
-                  -right-32
-                  -top-32
-                  h-80
-                  w-80
-                  border
-                  border-[#315744]/20
-                "
-              />
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  bottom-0
-                  left-0
-                  h-40
-                  w-40
-                  rounded-full
-                  bg-[#0B3626]/10
-                  blur-3xl
-                "
-              />
-
-              <div
-                className="
-                  absolute
-                  right-5
-                  top-5
-                  h-10
-                  w-10
-                  border-r
-                  border-t
-                  border-[#5A806C]/25
-                "
-              />
-
-              <div
-                className="
-                  absolute
-                  bottom-5
-                  left-5
-                  h-10
-                  w-10
-                  border-b
-                  border-l
-                  border-[#5A806C]/25
-                "
-              />
-
-              <div
-                className="
-                  relative
-                  z-10
-                  flex
-                  flex-col
-                  items-center
-                  justify-between
-                  gap-10
-                  md:flex-row
-                "
+            <GlassPanel className="rounded-[34px] p-9 md:p-16 lg:p-20">
+              <motion.div
+                variants={fadeUp}
+                className="grid gap-12 md:grid-cols-[1fr_auto] md:items-end"
               >
-
-                <div className="max-w-2xl">
-
-                  <span
-                    className="
-                      text-[10px]
-                      uppercase
-                      tracking-[0.3em]
-                      text-[#67927A]
-                    "
-                  >
-                    Start something meaningful
-                  </span>
+                <div>
+                  <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/40">
+                    <span className="h-px w-8 bg-white/30" />
+                    05 — Start a project
+                  </div>
 
                   <h2
-                    className="
-                      mt-4
-                      font-serif
-                      text-4xl
-                      leading-tight
-                      text-[#E7EDE9]
-                      md:text-6xl
-                    "
+                    className="mt-7 max-w-3xl text-5xl font-normal leading-[0.94] text-white md:text-7xl"
+                    style={{
+                      fontFamily: "'Instrument Serif', serif",
+                    }}
                   >
-                    Ready to build
+                    Have an idea?
                     <br />
-
-                    <span
-                      className="
-                        bg-gradient-to-r
-                        from-[#A0B9AA]
-                        via-[#638E77]
-                        to-[#3B5F4D]
-                        bg-clip-text
-                        text-transparent
-                      "
-                    >
-                      something great?
+                    <span className="text-white/35">
+                      Let's make it real.
                     </span>
                   </h2>
 
-                  <p
-                    className="
-                      mt-5
-                      max-w-xl
-                      text-sm
-                      leading-7
-                      text-[#6E7B74]
-                      md:text-base
-                    "
-                  >
-                    Let’s turn your vision into a
-                    high-performance digital product.
-                    From design to deployment — we’ve got
-                    you covered.
+                  <p className="mt-7 max-w-xl text-sm leading-7 text-white/40 md:text-base">
+                    Tell us what you're building, where you're
+                    going and what success looks like. We'll
+                    take it from there.
                   </p>
 
-                  <div
-                    className="
-                      mt-6
-                      flex
-                      flex-wrap
-                      gap-x-5
-                      gap-y-3
-                      text-[9px]
-                      uppercase
-                      tracking-[0.15em]
-                      text-[#526159]
-                    "
-                  >
-                    <span className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#5E8D74]" />
-                      No obligation
-                    </span>
-
-                    <span className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#5E8D74]" />
-                      30-min consultation
-                    </span>
-
-                    <span className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#5E8D74]" />
-                      Fast turnaround
-                    </span>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    {[
+                      "No obligation",
+                      "Free consultation",
+                      "Fast response",
+                    ].map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-[9px] uppercase tracking-[0.15em] text-white/35"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                <div className="shrink-0">
-                  <Link
-                    to="/contact"
-                    className="
-                      group
-                      relative
-                      inline-flex
-                      items-center
-                      gap-3
-                      overflow-hidden
-                      border
-                      border-[#4B745E]/40
-                      bg-[#153428]
-                      px-7
-                      py-4
-                      text-sm
-                      font-medium
-                      text-[#E2EAE5]
-                      shadow-[0_15px_50px_rgba(15,58,40,0.25)]
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                      hover:border-[#719B84]/50
-                      hover:bg-[#1A3E30]
-                    "
-                  >
-                    <motion.span
-                      animate={{
-                        x: ["-150%", "180%"],
-                      }}
-                      transition={{
-                        duration: 2.4,
-                        repeat: Infinity,
-                        repeatDelay: 5,
-                      }}
-                      className="
-                        absolute
-                        inset-y-0
-                        w-1/3
-                        skew-x-[-20deg]
-                        bg-white/10
-                      "
-                    />
+                <Link
+                  to="/contact"
+                  className="group inline-flex w-fit items-center gap-4 rounded-full border border-white/[0.15] bg-white/[0.06] px-7 py-4 text-sm text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.1]"
+                >
+                  Start a conversation
 
-                    <span className="relative z-10">
-                      Start a conversation
-                    </span>
-
-                    <ArrowUpRight
-                      className="
-                        relative
-                        z-10
-                        h-4
-                        w-4
-                        transition-transform
-                        duration-300
-                        group-hover:translate-x-1
-                        group-hover:-translate-y-1
-                      "
-                    />
-                  </Link>
-                </div>
-              </div>
-
-              <motion.div
-                animate={{
-                  x: ["-100%", "200%"],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  repeatDelay: 4,
-                }}
-                className="
-                  absolute
-                  bottom-0
-                  left-0
-                  h-px
-                  w-1/3
-                  bg-gradient-to-r
-                  from-transparent
-                  via-[#5C8C73]
-                  to-transparent
-                "
-              />
-            </motion.div>
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
+            </GlassPanel>
           </SectionReveal>
         </div>
       </section>
+
+      {/* =====================================================
+          MINI FOOTER
+      ====================================================== */}
+
+      <footer className="border-t border-white/[0.07] bg-[#020C12]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 md:flex-row md:items-center md:justify-between md:px-10">
+          <Link
+            to="/"
+            className="text-2xl text-white"
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+            }}
+          >
+            Layoutly<sup className="text-[8px]">®</sup>
+          </Link>
+
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/25">
+            Digital experiences with intent.
+          </p>
+
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/20">
+            © {new Date().getFullYear()} Layoutly
+          </p>
+        </div>
+      </footer>
     </main>
   );
 };

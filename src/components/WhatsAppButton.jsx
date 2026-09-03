@@ -18,7 +18,7 @@ export default function WhatsAppButton() {
       aria-label="Chat with Layoutly on WhatsApp"
       initial={{
         opacity: 0,
-        scale: 0.5,
+        scale: 0.6,
         y: 30,
       }}
       animate={{
@@ -46,7 +46,7 @@ export default function WhatsAppButton() {
       "
     >
       {/* =====================================================
-          OUTER PULSE
+          OUTER ATMOSPHERIC RING
       ====================================================== */}
 
       <motion.span
@@ -55,11 +55,11 @@ export default function WhatsAppButton() {
           scale: 0.8,
         }}
         animate={{
-          opacity: [0.15, 0, 0.15],
+          opacity: [0.18, 0, 0.18],
           scale: [1, 1.55, 1],
         }}
         transition={{
-          duration: 3,
+          duration: 3.5,
           repeat: Infinity,
           ease: "easeOut",
         }}
@@ -69,7 +69,7 @@ export default function WhatsAppButton() {
           inset-0
           rounded-full
           border
-          border-[#5F9A78]/50
+          border-white/20
         "
       />
 
@@ -83,13 +83,13 @@ export default function WhatsAppButton() {
           scale: 0.9,
         }}
         animate={{
-          opacity: [0.2, 0, 0.2],
+          opacity: [0.14, 0, 0.14],
           scale: [1, 1.35, 1],
         }}
         transition={{
-          duration: 3,
+          duration: 3.5,
           repeat: Infinity,
-          delay: 1,
+          delay: 1.2,
           ease: "easeOut",
         }}
         className="
@@ -98,18 +98,18 @@ export default function WhatsAppButton() {
           inset-1
           rounded-full
           border
-          border-[#3E7458]/30
+          border-[#78C99A]/25
         "
       />
 
       {/* =====================================================
-          BUTTON
+          MAIN BUTTON
       ====================================================== */}
 
       <motion.div
         variants={{
           hover: {
-            width: 175,
+            width: 178,
           },
         }}
         initial={{
@@ -119,7 +119,7 @@ export default function WhatsAppButton() {
           width: 58,
         }}
         transition={{
-          duration: 0.4,
+          duration: 0.45,
           ease: [0.16, 1, 0.3, 1],
         }}
         className="
@@ -130,28 +130,27 @@ export default function WhatsAppButton() {
           overflow-hidden
           rounded-full
           border
-          border-[#4B8062]/40
-          bg-[#0B2418]
-          shadow-[0_10px_35px_rgba(12,60,38,0.35)]
-          backdrop-blur-xl
-          transition-colors
+          border-white/15
+          bg-[#071B24]/90
+          shadow-[0_12px_40px_rgba(0,0,0,0.35)]
+          backdrop-blur-2xl
+          transition-all
           duration-300
-          group-hover:border-[#6AA783]/60
-          group-hover:bg-[#0E2D1E]
+          group-hover:border-white/25
+          group-hover:bg-[#0D2934]
         "
       >
-
         {/* ===================================================
-            GLOW
+            SUBTLE GREEN WHATSAPP GLOW
         ================================================== */}
 
         <motion.div
           animate={{
-            opacity: [0.15, 0.35, 0.15],
+            opacity: [0.08, 0.2, 0.08],
             scale: [1, 1.15, 1],
           }}
           transition={{
-            duration: 2.5,
+            duration: 2.8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -160,7 +159,7 @@ export default function WhatsAppButton() {
             absolute
             inset-0
             rounded-full
-            bg-[#2E8B57]/20
+            bg-[#25D366]/15
             blur-xl
           "
         />
@@ -172,12 +171,13 @@ export default function WhatsAppButton() {
         <motion.div
           variants={{
             hover: {
-              rotate: 8,
+              rotate: 7,
               scale: 1.08,
             },
           }}
           transition={{
             duration: 0.3,
+            ease: [0.16, 1, 0.3, 1],
           }}
           className="
             relative
@@ -196,7 +196,9 @@ export default function WhatsAppButton() {
             width="28"
             height="28"
             fill="none"
-            className="drop-shadow-[0_0_8px_rgba(100,190,130,0.35)]"
+            className="
+              drop-shadow-[0_0_10px_rgba(37,211,102,0.22)]
+            "
           >
             <path
               fill="#E8F5EC"
@@ -215,7 +217,7 @@ export default function WhatsAppButton() {
             />
 
             <path
-              fill="#0B2418"
+              fill="#0B2430"
               d="
                 M24 41
                 C20.4 41 17.1 39.8 14.4 37.7
@@ -271,16 +273,16 @@ export default function WhatsAppButton() {
           }}
           initial={{
             opacity: 0,
-            x: 10,
+            x: 12,
           }}
           className="
             relative
             z-10
             flex
-            min-w-[110px]
+            min-w-[115px]
             flex-col
             justify-center
-            pr-4
+            pr-5
             opacity-0
           "
         >
@@ -289,7 +291,8 @@ export default function WhatsAppButton() {
               whitespace-nowrap
               text-[11px]
               font-medium
-              text-[#DDEBE3]
+              tracking-[-0.01em]
+              text-white/90
             "
           >
             Chat with us
@@ -297,12 +300,12 @@ export default function WhatsAppButton() {
 
           <span
             className="
-              mt-0.5
+              mt-1
               whitespace-nowrap
               text-[8px]
               uppercase
               tracking-[0.16em]
-              text-[#6D9C81]
+              text-white/35
             "
           >
             Usually replies fast
@@ -310,7 +313,7 @@ export default function WhatsAppButton() {
         </motion.div>
 
         {/* ===================================================
-            SHINE
+            PREMIUM SHINE
         ================================================== */}
 
         <motion.div
@@ -330,7 +333,7 @@ export default function WhatsAppButton() {
             left-0
             w-1/4
             skew-x-[-20deg]
-            bg-white/[0.08]
+            bg-white/[0.07]
           "
         />
       </motion.div>
@@ -346,6 +349,7 @@ export default function WhatsAppButton() {
         transition={{
           duration: 2,
           repeat: Infinity,
+          ease: "easeInOut",
         }}
         className="
           absolute
@@ -356,9 +360,9 @@ export default function WhatsAppButton() {
           w-3.5
           rounded-full
           border-2
-          border-[#030605]
+          border-[#0B2430]
           bg-[#67B583]
-          shadow-[0_0_10px_rgba(103,181,131,0.7)]
+          shadow-[0_0_12px_rgba(103,181,131,0.7)]
         "
       />
     </motion.a>

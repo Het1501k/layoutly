@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -10,227 +9,402 @@ import {
 } from "lucide-react";
 
 /* =========================================================
-   PROJECT DATA
+   REAL PROJECTS
 ========================================================= */
 
 const projects = [
   {
-    id: "aura-botanicals",
-    title: "Aura Retail",
+    id: "allure-decor",
+    title: "Allure Decor",
     description:
-      "A scalable frontend architecture for a high-volume boutique fashion retailer.",
-    category: "E-commerce",
-    filter: "Frontend",
-    metric: "+45% Conversion",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCsg1TSJ6w7Pcvwr5VK1J2S-9MGCFrG2mLlEFzNQv6lUgb2Uv3jByXaVYkuvngNytAT-ecS80iFKzu1AY9Yvik_cqNCyRj0CgeNMT8JFN6cwFcodhKnCbGv1VsgEks-Pnj6ouAQXdyT5HgBBEIyMlXGlY4uPTtvQfQ_rc4INZIFPkGrajFzgWyQbt6rU2aAR0mUzU35qRKHn4v7OrNld-psVBHnTNkhPuoZjn1v4vq73UiFQHTiAbxN",
-  },
-  {
-    id: "ledgerflow",
-    title: "LedgerFlow",
-    description:
-      "Secure, responsive web application for B2B financial reconciliation.",
-    category: "FinTech",
-    filter: "Full-Stack",
-    metric: "Zero Downtime",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBlkmlKGGn6kvvM7nbv-C0iDCPnfHEb2gS7Zdd1j2II8tExEdcI7N2KucXLpRvZ_jCzJx7MS6oBi9QZIxdfhMlMfM20jpxXfi4MfguiXosi2LuWFLvXwmYW-Crxyb2fB7bqYRm860B_dw0sLJbXvM1e4gtSahlTX1MHrdkns8XIZH9cvXJxZxoP8lK4QFqRzffUEbnUS_X9LnlEGh4O0Bczm7gx7FF-Q5Q3vy1VYwU2TnCD7AIbjsMQ",
-  },
-  {
-    id: "vitaconnect",
-    title: "VitaConnect",
-    description:
-      "Rapid MVP development for a telehealth patient onboarding platform.",
-    category: "Healthcare MVP",
-    filter: "MVP",
-    metric: "4 Weeks to Launch",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBdGOzRHe9ZPwlSWQApaMowm2G332aDWHmKW7GXPhE_obJ9dDdkGvQJOibreAqfZKo3j2SvA5naQ4cuUM9AZn9_yUybyr95Hr4EXoWvGvtyFIymiFIVNnMfW7xprApdnciGuS_eS593k4NeynjvQn1x2SWmVgXg18l4Tg0_Y_0cZwcWZ2KRycQjblK220XcS0jRqBuh4jGZ_1cKdnbM8vBGpUeIThXxDSCczdd-3srrE5vLqC_2n_Ex",
-  },
-  {
-    id: "nexus-ops",
-    title: "Nexus Ops",
-    description:
-      "Full-stack rebuild of a cloud infrastructure management tool.",
-    category: "SaaS",
-    filter: "Full-Stack",
-    metric: "3x Faster Load",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDapKuczb7hVBTXhtSC1KTj5-oFCnz1ylNWX18PgZf-gW3bYA1xMVB8udcsAG1Bj1d6nxRZzw1boate5n28cAF8XKhwxVoKhMLImqBFf6_1uSVAnYy9DambkW9Hqs2SMBvah7ZPohMEhCFFZQAUQP64XRAnSs3FEG5uqPrmCrEb99o-DPg2-d9m8YOCJFvlClXtEjh6Ps8jCxll6ObGGBy906K1_4MY9zmBF4hrawtFKC5OdKiXGh81",
-  },
-  {
-    id: "lumina-systems",
-    title: "Lumina Systems",
-    description:
-      "Comprehensive brand identity and component library for a tech consultancy.",
-    category: "Brand Design",
+      "A premium interior design experience crafted to showcase refined spaces, elegant storytelling, and a strong visual identity.",
+    category: "Interior Design",
     filter: "Design",
-    metric: "System Adoption",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDZg0EEsD2yddV2oXOyxSUwf4zj0YaY7YfQrLK96aKxckddqeqX2KxkZz4dQr3OkSVSlPRwy0Xw_Vtiqg-Zf7rKGsqrSeFqdNUj8NIUMMP11qb3uyTk4joKH-XmDP_-yHlL0cPCAeGRUUyf-k4FPD632gPL0hjn1fhYrJCnXnIiD1rUDkEEc1iW_ik3yN17TcvcSnYJHfIAwATHk6O32IRJWku1xvwnVaV1dIdS6R6enF-sWeJ9BMya",
+    metric: "Luxury Digital Experience",
+    url: "https://allure-decor-by-creasha.vercel.app/",
+    label: "01",
+    accent: "from-[#8A7663] via-[#6C5B4D] to-[#263842]",
   },
+
   {
-    id: "freightflow",
-    title: "FreightFlow",
+    id: "forma",
+    title: "FORMA",
     description:
-      "Real-time tracking interface and admin dashboard for supply chain management.",
-    category: "Logistics",
+      "A contemporary interior design website focused on minimalism, spatial storytelling, and a sophisticated editorial presentation.",
+    category: "Interior Design",
+    filter: "Design",
+    metric: "Editorial Web Design",
+    url: "https://forma-interior.netlify.app/",
+    label: "02",
+    accent: "from-[#7D8581] via-[#53635F] to-[#23343D]",
+  },
+
+  {
+    id: "dj-travels",
+    title: "DJ Travels",
+    description:
+      "A travel-focused digital experience designed to make destinations, journeys, and travel discovery feel immersive and effortless.",
+    category: "Travel",
     filter: "Frontend",
-    metric: "Award Winning",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAX6N0chS5vK9QCPeWPeMA8i-qYKcAh9AApH6LCPWgwGieLD9FaxEUjzZymVXBAtGilSMkB4qRoFzzMc5uta_GdPLWmeVGIXKi17XysUcNaN-y-qOswzUF07Ne3hSJcFFHpxo4rIBhTzx8HWG0F2r9BTUHkgP8Kulzy_tUyuKA8RwAW-vVYQlaxpptcWb2_NWkYJ_Bg0c4Fmf0AvCDmYLFNski_-_8bKrnRBDCXrQrwdIUK7Wp0MeS-",
+    metric: "Travel Experience",
+    url: "https://dj-travels.netlify.app/",
+    label: "03",
+    accent: "from-[#668F9A] via-[#3E6978] to-[#102E3B]",
+  },
+
+  {
+    id: "veyr-design",
+    title: "Veyr Design",
+    description:
+      "A bold design-led web experience built around visual hierarchy, modern typography, and a distinctive creative direction.",
+    category: "Design Studio",
+    filter: "Design",
+    metric: "Creative Direction",
+    url: "https://veyr-design.netlify.app/",
+    label: "04",
+    accent: "from-[#8E9691] via-[#596A69] to-[#263C45]",
+  },
+
+  {
+    id: "layoutly",
+    title: "Layoutly",
+    description:
+      "Our own digital home — a cinematic portfolio and studio experience built to represent how we approach design, development, and digital products.",
+    category: "Studio",
+    filter: "Frontend",
+    metric: "Our Digital Home",
+    url: "https://layoutlyweb.netlify.app/",
+    label: "05",
+    accent: "from-[#759BA5] via-[#456E7A] to-[#102D39]",
   },
 ];
 
 /* =========================================================
    FILTERS
-
-   Kept exactly as your original.
 ========================================================= */
 
 const filters = [
   "All",
   "Design",
   "Frontend",
-  "Full-Stack",
-  "MVP",
 ];
+
+/* =========================================================
+   PROJECT PREVIEW
+========================================================= */
+
+const ProjectPreview = ({ project }) => {
+  return (
+    <div className="relative h-[270px] overflow-hidden bg-[#081A23]">
+      {/* Atmospheric preview background */}
+
+      <div
+        className={`
+          absolute
+          inset-0
+          bg-gradient-to-br
+          ${project.accent}
+        `}
+      />
+
+      {/* Dark cinematic overlay */}
+
+      <div className="absolute inset-0 bg-[#06151D]/35" />
+
+      {/* Editorial light */}
+
+      <div
+        className="
+          absolute
+          -right-24
+          -top-24
+          h-72
+          w-72
+          rounded-full
+          bg-white/[0.08]
+          blur-3xl
+        "
+      />
+
+      {/* Browser frame */}
+
+      <div
+        className="
+          absolute
+          left-[7%]
+          right-[7%]
+          top-[13%]
+          overflow-hidden
+          rounded-[3px]
+          border
+          border-white/[0.16]
+          bg-[#081A23]/75
+          shadow-[0_30px_70px_rgba(0,0,0,0.35)]
+          backdrop-blur-md
+          transition-transform
+          duration-700
+          group-hover:-translate-y-2
+          group-hover:scale-[1.025]
+        "
+      >
+        {/* Browser bar */}
+
+        <div
+          className="
+            flex
+            h-8
+            items-center
+            gap-1.5
+            border-b
+            border-white/[0.08]
+            bg-black/20
+            px-3
+          "
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
+
+          <div
+            className="
+              ml-3
+              h-3
+              flex-1
+              rounded-sm
+              border
+              border-white/[0.06]
+              bg-white/[0.035]
+            "
+          />
+        </div>
+
+        {/* Website preview */}
+
+        <div className="relative h-[185px] overflow-hidden">
+          {/* Fake visual composition */}
+
+          <div className="absolute inset-0 bg-[#091D27]/30" />
+
+          <div
+            className="
+              absolute
+              left-[8%]
+              top-[15%]
+              h-px
+              w-[34%]
+              bg-white/50
+            "
+          />
+
+          <div
+            className="
+              absolute
+              left-[8%]
+              top-[27%]
+              h-3
+              w-[42%]
+              rounded-sm
+              bg-white/70
+            "
+          />
+
+          <div
+            className="
+              absolute
+              left-[8%]
+              top-[38%]
+              h-2
+              w-[27%]
+              rounded-sm
+              bg-white/30
+            "
+          />
+
+          <div
+            className="
+              absolute
+              left-[8%]
+              top-[57%]
+              h-7
+              w-20
+              rounded-full
+              border
+              border-white/30
+              bg-white/[0.06]
+            "
+          />
+
+          <div
+            className="
+              absolute
+              bottom-[10%]
+              right-[8%]
+              h-[72%]
+              w-[38%]
+              rounded-[2px]
+              border
+              border-white/[0.12]
+              bg-white/[0.07]
+            "
+          />
+
+          <div
+            className="
+              absolute
+              bottom-[17%]
+              right-[15%]
+              h-[45%]
+              w-[23%]
+              bg-white/[0.08]
+            "
+          />
+
+          {/* Project title */}
+
+          <div
+            className="
+              absolute
+              bottom-5
+              left-6
+              max-w-[65%]
+              font-serif
+              text-2xl
+              leading-none
+              tracking-[-0.03em]
+              text-white/90
+              sm:text-3xl
+            "
+          >
+            {project.title}
+          </div>
+        </div>
+      </div>
+
+      {/* Category */}
+
+      <div
+        className="
+          absolute
+          left-4
+          top-4
+          z-20
+          border
+          border-white/[0.14]
+          bg-[#06151D]/60
+          px-3
+          py-1.5
+          backdrop-blur-md
+          text-[9px]
+          uppercase
+          tracking-[0.16em]
+          text-white/70
+        "
+      >
+        {project.category}
+      </div>
+
+      {/* Number */}
+
+      <div
+        className="
+          absolute
+          right-4
+          top-4
+          z-20
+          font-mono
+          text-[9px]
+          tracking-[0.2em]
+          text-white/45
+        "
+      >
+        {project.label}
+      </div>
+
+      {/* External icon */}
+
+      <div
+        className="
+          absolute
+          bottom-4
+          right-4
+          z-20
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-full
+          border
+          border-white/[0.15]
+          bg-[#06151D]/65
+          text-white/70
+          backdrop-blur-md
+          transition-all
+          duration-300
+          group-hover:border-white/30
+          group-hover:bg-white/[0.1]
+          group-hover:text-white
+        "
+      >
+        <ArrowUpRight
+          className="h-4 w-4"
+          strokeWidth={1.3}
+        />
+      </div>
+    </div>
+  );
+};
 
 /* =========================================================
    PROJECT CARD
 ========================================================= */
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project }) => {
   return (
-    <article className="our-work-card group relative overflow-hidden">
-      {/* =====================================================
-          IMAGE
-      ====================================================== */}
+    <article
+      className="
+        group
+        relative
+        overflow-hidden
+        border
+        border-white/[0.08]
+        bg-[#081B25]/70
+        backdrop-blur-xl
+        transition-all
+        duration-500
+        hover:-translate-y-1
+        hover:border-white/[0.14]
+        hover:bg-[#0A202B]/80
+      "
+    >
+      {/* Preview */}
 
-      <div className="relative h-64 overflow-hidden bg-[#08100C]">
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          decoding="async"
-          className="
-            our-work-image
-            h-full
-            w-full
-            object-cover
-            grayscale-[15%]
-          "
-        />
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${project.title}`}
+        className="block"
+      >
+        <ProjectPreview project={project} />
+      </a>
 
-        {/* Image overlay */}
+      {/* Content */}
 
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            bg-gradient-to-t
-            from-[#030605]
-            via-[#030605]/20
-            to-transparent
-            opacity-80
-          "
-        />
-
-        {/* Subtle green overlay */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            bg-[#174A34]/10
-            opacity-0
-            transition-opacity
-            duration-200
-            group-hover:opacity-100
-          "
-        />
-
-        {/* Category */}
-
-        <div
-          className="
-            absolute
-            left-4
-            top-4
-            border
-            border-white/10
-            bg-[#050A07]/90
-            px-3
-            py-1.5
-            text-[9px]
-            uppercase
-            tracking-[0.14em]
-            text-[#C2CEC7]
-          "
-        >
-          {project.category}
-        </div>
-
-        {/* Number */}
-
-        <div
-          className="
-            absolute
-            right-4
-            top-4
-            font-mono
-            text-[9px]
-            tracking-[0.2em]
-            text-white/50
-          "
-        >
-          {String(index + 1).padStart(2, "0")}
-        </div>
-
-        {/* View icon */}
-
-        <div
-          className="
-            our-work-view-icon
-            absolute
-            bottom-4
-            right-4
-            flex
-            h-10
-            w-10
-            items-center
-            justify-center
-            border
-            border-[#739785]/30
-            bg-[#07100B]/90
-            text-[#9CB5A7]
-          "
-        >
-          <ArrowUpRight
-            className="h-4 w-4"
-            strokeWidth={1.3}
-          />
-        </div>
-      </div>
-
-      {/* =====================================================
-          CONTENT
-      ====================================================== */}
-
-      <div className="relative z-10 flex flex-col p-6">
+      <div className="relative z-10 p-6">
         {/* Title */}
 
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-5">
           <h3
             className="
               font-serif
-              text-2xl
-              text-[#E1E9E4]
+              text-3xl
+              leading-none
+              tracking-[-0.035em]
+              text-[#EDF1F0]
               transition-colors
-              duration-200
-              group-hover:text-[#B3C8BB]
+              duration-300
+              group-hover:text-white
             "
           >
             {project.title}
@@ -238,12 +412,13 @@ const ProjectCard = ({ project, index }) => {
 
           <span
             className="
-              mt-1
+              mt-1.5
               h-1.5
               w-1.5
               shrink-0
               rounded-full
-              bg-[#5F896F]
+              bg-[#9FBAC0]
+              shadow-[0_0_12px_rgba(159,186,192,0.35)]
             "
           />
         </div>
@@ -252,11 +427,11 @@ const ProjectCard = ({ project, index }) => {
 
         <p
           className="
-            mt-3
-            min-h-[72px]
+            mt-4
+            min-h-[84px]
             text-sm
             leading-7
-            text-[#68766F]
+            text-white/40
           "
         >
           {project.description}
@@ -264,21 +439,18 @@ const ProjectCard = ({ project, index }) => {
 
         {/* Divider */}
 
-        <div className="my-5 h-px bg-white/[0.06]" />
+        <div className="my-6 h-px bg-white/[0.07]" />
 
         {/* Bottom */}
 
-        <div className="flex items-center justify-between gap-3">
-          {/* Metric */}
-
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
             <span
               className="
                 h-1.5
                 w-1.5
-                shrink-0
                 rounded-full
-                bg-[#6D9B80]
+                bg-[#9FBAC0]/80
               "
             />
 
@@ -286,18 +458,18 @@ const ProjectCard = ({ project, index }) => {
               className="
                 text-[9px]
                 uppercase
-                tracking-[0.12em]
-                text-[#71877C]
+                tracking-[0.13em]
+                text-white/35
               "
             >
               {project.metric}
             </span>
           </div>
 
-          {/* Case study */}
-
-          <Link
-            to={`/case-study/${project.id}`}
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               group/link
               inline-flex
@@ -306,26 +478,27 @@ const ProjectCard = ({ project, index }) => {
               text-[9px]
               font-medium
               uppercase
-              tracking-[0.13em]
-              text-[#81988C]
+              tracking-[0.16em]
+              text-[#A8C1C7]
               transition-colors
-              duration-150
-              hover:text-[#B2C6BA]
+              duration-300
+              hover:text-white
             "
           >
-            View Case Study
+            View Project
 
-            <ArrowRight
+            <ArrowUpRight
               className="
                 h-3.5
                 w-3.5
                 transition-transform
-                duration-150
-                group-hover/link:translate-x-1
+                duration-300
+                group-hover/link:-translate-y-0.5
+                group-hover/link:translate-x-0.5
               "
               strokeWidth={1.3}
             />
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -340,11 +513,11 @@ const ProjectCard = ({ project, index }) => {
           h-px
           w-0
           bg-gradient-to-r
-          from-[#4D765E]
-          via-[#6C977E]
+          from-[#9FBAC0]
+          via-[#6D929B]
           to-transparent
           transition-[width]
-          duration-200
+          duration-500
           group-hover:w-full
         "
       />
@@ -358,10 +531,6 @@ const ProjectCard = ({ project, index }) => {
 
 const OurWork = () => {
   const [activeFilter, setActiveFilter] = useState("All");
-
-  /* -------------------------------------------------------
-     useMemo prevents filtering work on unrelated renders.
-  ------------------------------------------------------- */
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
@@ -379,95 +548,101 @@ const OurWork = () => {
         relative
         min-h-screen
         overflow-hidden
-        bg-[#030605]
-        text-[#E8EEE9]
+        bg-[#0B2430]
+        text-white
       "
     >
       {/* =====================================================
-          BACKGROUND
-
-          PERFORMANCE:
-          - No Framer Motion
-          - No infinite animation
-          - No animated blur
-          - No rotating rings
+          CINEMATIC BACKGROUND
       ====================================================== */}
 
-      <div
-        className="
-          pointer-events-none
-          fixed
-          inset-0
-          z-0
-          overflow-hidden
-        "
-      >
-        {/* Grid */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        {/* Editorial grid */}
 
         <div
-          className="
-            absolute
-            inset-0
-            opacity-[0.025]
-          "
+          className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage: `
               linear-gradient(
-                rgba(100,145,123,0.65) 1px,
+                rgba(255,255,255,0.7) 1px,
                 transparent 1px
               ),
               linear-gradient(
                 90deg,
-                rgba(100,145,123,0.65) 1px,
+                rgba(255,255,255,0.7) 1px,
                 transparent 1px
               )
             `,
-            backgroundSize: "58px 58px",
+            backgroundSize: "80px 80px",
           }}
         />
 
-        {/* Static green glow */}
+        {/* Atmospheric light */}
 
         <div
           className="
-            our-work-glow
             absolute
             left-[-180px]
-            top-[-150px]
-            h-[550px]
-            w-[550px]
+            top-[-160px]
+            h-[620px]
+            w-[620px]
             rounded-full
-            bg-[#0D3A29]/10
+            bg-[#729BA5]/[0.07]
+            blur-[130px]
           "
         />
 
-        {/* Static blue-green glow */}
-
         <div
           className="
-            our-work-glow
             absolute
-            right-[-220px]
-            top-[35%]
-            h-[500px]
-            w-[500px]
+            right-[-240px]
+            top-[32%]
+            h-[650px]
+            w-[650px]
             rounded-full
-            bg-[#092C35]/[0.08]
+            bg-[#163C4B]/60
+            blur-[140px]
           "
         />
 
-        {/* Static bottom glow */}
-
         <div
           className="
-            our-work-glow
             absolute
-            bottom-[-250px]
+            bottom-[-320px]
             left-[25%]
-            h-[500px]
-            w-[500px]
+            h-[650px]
+            w-[650px]
             rounded-full
-            bg-[#10442E]/[0.08]
+            bg-[#071923]/90
+            blur-[120px]
+          "
+        />
+
+        {/* Editorial vertical lines */}
+
+        <div
+          className="
+            absolute
+            left-[7.5%]
+            top-0
+            hidden
+            h-full
+            w-px
+            bg-white/[0.035]
+            lg:block
+          "
+        />
+
+        <div
+          className="
+            absolute
+            right-[7.5%]
+            top-0
+            hidden
+            h-full
+            w-px
+            bg-white/[0.035]
+            lg:block
           "
         />
       </div>
@@ -483,29 +658,27 @@ const OurWork = () => {
           px-6
           pb-14
           pt-32
+          sm:pt-36
           md:px-10
+          md:pb-16
           md:pt-40
         "
       >
         <div className="mx-auto max-w-7xl">
-
           {/* Eyebrow */}
 
           <div
             className="
-              our-work-enter
               inline-flex
               items-center
-              gap-2
+              gap-2.5
+              rounded-full
               border
-              border-[#41644F]/30
-              bg-[#08110C]
+              border-white/[0.12]
+              bg-white/[0.035]
               px-4
               py-2
-              text-[10px]
-              uppercase
-              tracking-[0.3em]
-              text-[#719783]
+              backdrop-blur-md
             "
           >
             <span
@@ -513,59 +686,55 @@ const OurWork = () => {
                 h-1.5
                 w-1.5
                 rounded-full
-                bg-[#639176]
+                bg-[#9FBAC0]
+                shadow-[0_0_12px_rgba(159,186,192,0.55)]
               "
             />
 
-            Selected Work
+            <span
+              className="
+                text-[9px]
+                uppercase
+                tracking-[0.3em]
+                text-white/55
+              "
+            >
+              Selected Work
+            </span>
           </div>
 
           {/* Heading */}
 
           <h1
             className="
-              our-work-enter
-              our-work-enter-delay-1
-              mt-7
+              mt-8
               max-w-5xl
               font-serif
-              text-5xl
+              text-[3.5rem]
               font-medium
-              leading-[0.98]
-              tracking-[-0.045em]
-              text-[#EDF2EF]
+              leading-[0.9]
+              tracking-[-0.055em]
+              text-[#F2F4F3]
               sm:text-6xl
-              md:text-7xl
+              md:text-8xl
+              lg:text-[7rem]
             "
           >
-            Real Start-ups.
-
+            Work that
             <br />
-
-            <span
-              className="
-                bg-gradient-to-r
-                from-[#A3BBAE]
-                via-[#67937B]
-                to-[#3E624F]
-                bg-clip-text
-                text-transparent
-              "
-            >
-              Real Results.
+            <span className="text-[#9FBAC0]">
+              speaks for itself.
             </span>
           </h1>
 
-          {/* Description */}
+          {/* Description + Count */}
 
           <div
             className="
-              our-work-enter
-              our-work-enter-delay-2
-              mt-7
+              mt-8
               flex
               flex-col
-              gap-6
+              gap-7
               md:flex-row
               md:items-end
               md:justify-between
@@ -574,16 +743,17 @@ const OurWork = () => {
             <p
               className="
                 max-w-2xl
-                text-base
-                leading-8
-                text-[#707D76]
-                md:text-lg
+                text-sm
+                leading-7
+                text-white/45
+                md:text-base
+                md:leading-8
               "
             >
-              Explore our portfolio of high-performance
-              digital products designed and engineered for
-              modern businesses. We combine technical
-              accuracy with aesthetic refinement.
+              A selection of real websites we've designed and
+              built for brands, businesses, and our own studio.
+              Every project starts with a clear idea and ends
+              with a digital experience.
             </p>
 
             {/* Project count */}
@@ -594,7 +764,7 @@ const OurWork = () => {
                 items-center
                 gap-4
                 border-l
-                border-[#3F5D4B]/30
+                border-white/[0.12]
                 pl-5
               "
             >
@@ -602,8 +772,9 @@ const OurWork = () => {
                 <p
                   className="
                     font-serif
-                    text-3xl
-                    text-[#DDE7E1]
+                    text-4xl
+                    leading-none
+                    text-[#E8EEED]
                   "
                 >
                   {projects.length}
@@ -611,19 +782,19 @@ const OurWork = () => {
 
                 <p
                   className="
-                    mt-1
-                    text-[9px]
+                    mt-2
+                    text-[8px]
                     uppercase
-                    tracking-[0.2em]
-                    text-[#52645A]
+                    tracking-[0.22em]
+                    text-white/30
                   "
                 >
-                  Selected Projects
+                  Live Projects
                 </p>
               </div>
 
               <Layers3
-                className="h-6 w-6 text-[#5F896F]"
+                className="h-6 w-6 text-[#8DAAB1]"
                 strokeWidth={1.2}
               />
             </div>
@@ -642,7 +813,7 @@ const OurWork = () => {
           mx-auto
           max-w-7xl
           px-6
-          pb-12
+          pb-10
           md:px-10
         "
       >
@@ -652,8 +823,7 @@ const OurWork = () => {
             items-center
             gap-2
             overflow-x-auto
-            pb-3
-            scrollbar-hide
+            pb-2
           "
         >
           {/* Filter label */}
@@ -668,18 +838,18 @@ const OurWork = () => {
               text-[9px]
               uppercase
               tracking-[0.2em]
-              text-[#52655A]
+              text-white/30
             "
           >
             <BriefcaseBusiness
               className="h-3.5 w-3.5"
-              strokeWidth={1.3}
+              strokeWidth={1.2}
             />
 
             Filter
           </div>
 
-          {/* Filter buttons */}
+          {/* Filters */}
 
           {filters.map((filter) => {
             const active = activeFilter === filter;
@@ -692,30 +862,31 @@ const OurWork = () => {
                 aria-pressed={active}
                 className={`
                   relative
-                  flex-shrink-0
+                  shrink-0
+                  rounded-full
                   border
                   px-5
                   py-2.5
-                  text-[10px]
+                  text-[9px]
                   uppercase
-                  tracking-[0.14em]
-                  transition-colors
-                  duration-150
+                  tracking-[0.15em]
+                  transition-all
+                  duration-300
                   ${
                     active
                       ? `
-                        border-[#4E765F]/50
-                        bg-[#163428]
-                        text-[#DDE9E1]
-                        shadow-[0_8px_25px_rgba(22,52,40,0.18)]
+                        border-white/[0.18]
+                        bg-white/[0.1]
+                        text-white
+                        shadow-[0_10px_30px_rgba(0,0,0,0.12)]
                       `
                       : `
                         border-white/[0.07]
-                        bg-[#080E0B]
-                        text-[#64736B]
-                        hover:border-[#466A55]/40
-                        hover:bg-[#0B1510]
-                        hover:text-[#9AADA3]
+                        bg-white/[0.02]
+                        text-white/35
+                        hover:border-white/[0.14]
+                        hover:bg-white/[0.05]
+                        hover:text-white/70
                       `
                   }
                 `}
@@ -740,6 +911,7 @@ const OurWork = () => {
           px-6
           pb-28
           md:px-10
+          md:pb-36
         "
       >
         {filteredProjects.length > 0 ? (
@@ -749,30 +921,25 @@ const OurWork = () => {
               grid-cols-1
               gap-5
               md:grid-cols-2
-              lg:grid-cols-3
             "
           >
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}
-                index={index}
               />
             ))}
           </div>
         ) : (
-          /* =================================================
-             EMPTY STATE
-          ================================================== */
-
           <div
             className="
               border
-              border-white/[0.06]
-              bg-[#070D0A]
+              border-white/[0.07]
+              bg-white/[0.025]
               px-6
-              py-20
+              py-24
               text-center
+              backdrop-blur-xl
             "
           >
             <Layers3
@@ -780,7 +947,7 @@ const OurWork = () => {
                 mx-auto
                 h-8
                 w-8
-                text-[#4F6E5C]
+                text-white/25
               "
               strokeWidth={1.2}
             />
@@ -789,8 +956,8 @@ const OurWork = () => {
               className="
                 mt-5
                 font-serif
-                text-2xl
-                text-[#C8D4CD]
+                text-3xl
+                text-white/75
               "
             >
               No projects found
@@ -800,7 +967,7 @@ const OurWork = () => {
               className="
                 mt-2
                 text-sm
-                text-[#637168]
+                text-white/35
               "
             >
               No projects currently match this filter.
@@ -814,24 +981,26 @@ const OurWork = () => {
                 inline-flex
                 items-center
                 gap-2
+                rounded-full
                 border
-                border-[#45684F]/40
-                bg-[#10271D]
+                border-white/[0.12]
+                bg-white/[0.05]
                 px-5
                 py-3
-                text-[10px]
+                text-[9px]
                 uppercase
-                tracking-[0.15em]
-                text-[#91AA9B]
-                transition-colors
-                duration-150
-                hover:border-[#638A73]/50
-                hover:bg-[#163428]
+                tracking-[0.16em]
+                text-white/60
+                transition-all
+                duration-300
+                hover:border-white/20
+                hover:bg-white/[0.1]
+                hover:text-white
               "
             >
               <Check
                 className="h-3.5 w-3.5"
-                strokeWidth={1.4}
+                strokeWidth={1.3}
               />
 
               View All Projects
@@ -849,151 +1018,155 @@ const OurWork = () => {
           relative
           z-10
           border-t
-          border-white/[0.05]
-          bg-[#050907]
+          border-white/[0.07]
+          bg-[#091D27]
           px-6
-          py-24
+          py-28
           md:px-10
+          md:py-36
         "
       >
-        <div className="mx-auto max-w-5xl">
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            overflow-hidden
+          "
+        >
           <div
             className="
-              relative
-              overflow-hidden
-              border
-              border-[#405F4D]/25
-              bg-[#070D0A]
-              p-10
-              text-center
-              md:p-14
+              absolute
+              left-1/2
+              top-1/2
+              h-[500px]
+              w-[500px]
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-[#729BA5]/[0.04]
+              blur-[130px]
+            "
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-5xl text-center">
+          <Sparkles
+            className="
+              mx-auto
+              h-6
+              w-6
+              text-[#A1BBC1]
+            "
+            strokeWidth={1.2}
+          />
+
+          <p
+            className="
+              mt-5
+              text-[9px]
+              uppercase
+              tracking-[0.3em]
+              text-white/30
             "
           >
-            {/* Static glow */}
+            Your project could be next
+          </p>
 
-            <div
+          <h2
+            className="
+              mt-5
+              font-serif
+              text-4xl
+              leading-[0.92]
+              tracking-[-0.045em]
+              text-[#F1F3F2]
+              sm:text-5xl
+              md:text-6xl
+            "
+          >
+            Let's build something
+            <br />
+            <span className="text-[#9FBAC0]">
+              worth remembering.
+            </span>
+          </h2>
+
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-xl
+              text-sm
+              leading-7
+              text-white/40
+            "
+          >
+            Have an idea worth building? Let's turn it into a
+            digital experience that actually represents your
+            brand.
+          </p>
+
+          <a
+            href="/contact"
+            className="
+              group
+              relative
+              mt-8
+              inline-flex
+              items-center
+              gap-3
+              overflow-hidden
+              rounded-full
+              border
+              border-white/[0.16]
+              bg-white/[0.08]
+              px-7
+              py-4
+              text-sm
+              font-medium
+              text-white
+              backdrop-blur-xl
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-white/25
+              hover:bg-white/[0.13]
+            "
+          >
+            <span
               className="
-                our-work-cta-glow
                 pointer-events-none
                 absolute
-                left-1/2
-                top-1/2
-                h-80
-                w-80
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                bg-[#0D412D]/[0.06]
+                inset-0
+                -translate-x-full
+                bg-gradient-to-r
+                from-transparent
+                via-white/[0.1]
+                to-transparent
+                transition-transform
+                duration-700
+                group-hover:translate-x-full
               "
             />
 
-            {/* Corners */}
+            <span className="relative z-10">
+              Start a Project
+            </span>
 
-            <div
-              className="
-                absolute
-                left-5
-                top-5
-                h-10
-                w-10
-                border-l
-                border-t
-                border-[#5C816D]/25
-              "
-            />
-
-            <div
-              className="
-                absolute
-                bottom-5
-                right-5
-                h-10
-                w-10
-                border-b
-                border-r
-                border-[#5C816D]/25
-              "
-            />
-
-            <Sparkles
+            <ArrowRight
               className="
                 relative
-                mx-auto
-                h-6
-                w-6
-                text-[#65947A]
+                z-10
+                h-4
+                w-4
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
               "
               strokeWidth={1.3}
             />
-
-            <h2
-              className="
-                relative
-                mt-5
-                font-serif
-                text-3xl
-                text-[#E5ECE8]
-                md:text-4xl
-              "
-            >
-              Your Project Could Be Next.
-            </h2>
-
-            <p
-              className="
-                relative
-                mx-auto
-                mt-3
-                max-w-xl
-                text-sm
-                leading-7
-                text-[#68766F]
-              "
-            >
-              Have an idea worth building? Let's turn it
-              into a digital experience that actually moves
-              your business forward.
-            </p>
-
-            <Link
-              to="/contact"
-              className="
-                group
-                relative
-                mt-7
-                inline-flex
-                items-center
-                gap-3
-                border
-                border-[#4C765F]/40
-                bg-[#153428]
-                px-7
-                py-4
-                text-sm
-                font-medium
-                text-[#E2EAE5]
-                shadow-[0_12px_35px_rgba(15,58,40,0.18)]
-                transition-transform
-                duration-200
-                hover:-translate-y-1
-                hover:border-[#719B84]/50
-                hover:bg-[#1A3E30]
-              "
-            >
-              Start a Project
-
-              <ArrowRight
-                className="
-                  h-4
-                  w-4
-                  transition-transform
-                  duration-200
-                  group-hover:translate-x-1
-                "
-                strokeWidth={1.4}
-              />
-            </Link>
-          </div>
+          </a>
         </div>
       </section>
     </main>

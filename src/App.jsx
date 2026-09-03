@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import SmoothScroll from "./components/SmoothScroll";
 import WhatsAppButton from "./components/WhatsAppButton";
+import Studio from "./pages/Studio";
+import Journal from "./pages/Journal";
 
 // =====================================================
 // LAZY-LOADED PAGES
@@ -139,6 +141,8 @@ function App() {
                 path="/case-study/:id"
                 element={<CaseStudy />}
               />
+              <Route path="/studio" element={<Studio />} />
+<Route path="/journal" element={<Journal />} />
 
             </Routes>
           </Suspense>

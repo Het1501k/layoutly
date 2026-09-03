@@ -2,764 +2,681 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
-  CheckCircle2,
-  Code2,
   Mail,
-  MapPin,
-  Palette,
-  Phone,
-  Share2,
-  Sparkles,
+  ArrowUp,
 } from "lucide-react";
 
 const Footer = () => {
-  const companyLinks = [
-    { path: "/about", label: "About" },
-    { path: "/our-work", label: "Our Work" },
-    { path: "/pricing", label: "Pricing" },
-    { path: "/blog", label: "Blog" },
-    { path: "/faq", label: "FAQ" },
-  ];
-
-  const services = [
-    "Website Design",
-    "UI/UX Design",
-    "Web Development",
-    "Landing Pages",
-    "E-Commerce",
-    "SEO Optimization",
-  ];
-
-  const socialLinks = [
-    {
-      name: "Instagram",
-      href: "https://www.instagram.com/layoutly.dev?igsh=b2w2eXYxNmUwY2Vz",
-      icon: Share2,
-    },
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/company/layoutlyweb/",
-      icon: Code2,
-    },
-   
-    {
-      name: "GitHub",
-      href: "https://github.com/layoutly",
-      icon: Code2,
-    },
-  ];
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-[#030605] text-[#E8EEE9]">
-
+    <footer className="relative overflow-hidden bg-[#06151D] text-white">
       {/* =====================================================
-          BACKGROUND
+          TOP BORDER
       ====================================================== */}
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              rgba(100,145,123,0.65) 1px,
-              transparent 1px
-            ),
-            linear-gradient(
-              90deg,
-              rgba(100,145,123,0.65) 1px,
-              transparent 1px
-            )
-          `,
-          backgroundSize: "55px 55px",
-        }}
-      />
+      <div className="h-px w-full bg-white/[0.10]" />
 
-      {/* Green atmosphere */}
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10 lg:px-14">
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-48
-          left-1/3
-          h-[500px]
-          w-[500px]
-          rounded-full
-          bg-[#0B3928]/15
-          blur-[150px]
-        "
-      />
+        {/* ===================================================
+            MAIN CTA
+        ==================================================== */}
 
-      {/* Blue-green atmosphere */}
+        <section className="relative border-b border-white/[0.08] py-24 md:py-32 lg:py-40">
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-40
-          top-10
-          h-[400px]
-          w-[400px]
-          rounded-full
-          bg-[#092A31]/10
-          blur-[130px]
-        "
-      />
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
 
-      {/* =====================================================
-          DECORATIVE LINES
-      ====================================================== */}
+            {/* LEFT */}
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-0
-          right-0
-          top-0
-          h-px
-          bg-gradient-to-r
-          from-transparent
-          via-[#4B765F]/40
-          to-transparent
-        "
-      />
+            <div>
+              <span
+                className="
+                  text-[9px]
+                  uppercase
+                  tracking-[0.32em]
+                  text-white/40
+                "
+              >
+                Let's create something
+              </span>
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-[8%]
-          top-20
-          h-32
-          w-32
-          rotate-45
-          border
-          border-[#3B5E4C]/10
-        "
-      />
+              <h2
+                className="
+                  mt-6
+                  max-w-5xl
+                  text-5xl
+                  font-normal
+                  leading-[0.9]
+                  tracking-[-1.8px]
+                  text-white
+                  sm:text-6xl
+                  md:text-7xl
+                  lg:text-[7.5rem]
+                "
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                }}
+              >
+                Have an idea?
+                <br />
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          right-[8%]
-          bottom-24
-          h-40
-          w-40
-          rotate-45
-          border
-          border-[#3B5E4C]/10
-        "
-      />
+                <span className="text-white/45">
+                  Let's make it real.
+                </span>
+              </h2>
+            </div>
 
-      {/* =====================================================
-          CONTENT
-      ====================================================== */}
+            {/* RIGHT */}
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10">
+            <div className="lg:pb-2">
 
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-5 lg:gap-10">
+              <p
+                className="
+                  max-w-md
+                  text-sm
+                  leading-7
+                  text-white/50
+                  md:text-base
+                "
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                }}
+              >
+                From first thought to final launch, we create
+                digital experiences that feel as good as they
+                perform.
+              </p>
+
+              <Link
+                to="/contact"
+                className="
+                  group
+                  mt-8
+                  inline-flex
+                  items-center
+                  gap-3
+                  rounded-full
+                  border
+                  border-white/20
+                  bg-white/[0.06]
+                  px-7
+                  py-4
+                  text-sm
+                  text-white
+                  backdrop-blur-md
+                  transition-all
+                  duration-300
+                  hover:scale-[1.02]
+                  hover:border-white/35
+                  hover:bg-white/[0.11]
+                "
+              >
+                <span>
+                  Start a conversation
+                </span>
+
+                <ArrowUpRight
+                  className="
+                    h-4
+                    w-4
+                    transition-transform
+                    duration-300
+                    group-hover:-translate-y-1
+                    group-hover:translate-x-1
+                  "
+                />
+              </Link>
+            </div>
+          </div>
+
+          {/* Small editorial line */}
+
+          <div
+            className="
+              absolute
+              bottom-0
+              left-0
+              h-px
+              w-24
+              bg-white/30
+            "
+          />
+        </section>
+
+        {/* ===================================================
+            NAVIGATION
+        ==================================================== */}
+
+        <section
+          className="
+            grid
+            grid-cols-1
+            border-b
+            border-white/[0.08]
+            py-16
+            md:grid-cols-2
+            md:py-20
+            lg:grid-cols-[1.4fr_0.6fr_0.6fr_0.8fr]
+          "
+        >
 
           {/* =================================================
               BRAND
-          ================================================= */}
+          ================================================== */}
 
-          <div className="lg:col-span-2">
+          <div className="mb-14 lg:mb-0">
 
             <Link
               to="/"
-              className="group inline-flex items-center gap-3"
+              className="group inline-block"
             >
-              <div
-                className="
-                  relative
-                  flex
-                  h-11
-                  w-11
-                  items-center
-                  justify-center
-                  border
-                  border-[#4B745E]/30
-                  bg-[#09120E]
-                  transition-all
-                  duration-500
-                  group-hover:border-[#719B84]/50
-                  group-hover:bg-[#0D1C14]
-                "
-              >
-                <Sparkles
-                  className="
-                    h-5
-                    w-5
-                    text-[#6C997F]
-                    transition-transform
-                    duration-500
-                    group-hover:rotate-12
-                    group-hover:scale-110
-                  "
-                  strokeWidth={1.5}
-                />
-
-                <span
-                  className="
-                    absolute
-                    right-0
-                    top-0
-                    h-2
-                    w-2
-                    border-r
-                    border-t
-                    border-[#6B947D]/50
-                  "
-                />
-
-                <span
-                  className="
-                    absolute
-                    bottom-0
-                    left-0
-                    h-2
-                    w-2
-                    border-b
-                    border-l
-                    border-[#6B947D]/50
-                  "
-                />
-              </div>
-
               <span
                 className="
-                  font-serif
-                  text-2xl
-                  tracking-tight
-                  text-[#E4EBE7]
+                  text-4xl
+                  tracking-[-0.8px]
+                  text-white
+                  transition-opacity
+                  duration-300
+                  group-hover:opacity-70
                 "
+                style={{
+                  fontFamily: "'Instrument Serif', serif",
+                }}
               >
                 Layoutly
+                <sup className="ml-0.5 text-[10px]">
+                  ®
+                </sup>
               </span>
             </Link>
-
-            {/* Label */}
-
-            <div
-              className="
-                mt-5
-                flex
-                items-center
-                gap-2
-                text-[9px]
-                uppercase
-                tracking-[0.25em]
-                text-[#5D796B]
-              "
-            >
-              <span
-                className="
-                  h-1.5
-                  w-1.5
-                  rounded-full
-                  bg-[#5C8B72]
-                  shadow-[0_0_10px_rgba(92,139,114,0.8)]
-                "
-              />
-
-              Digital product studio
-            </div>
-
-            {/* Description */}
 
             <p
               className="
                 mt-5
-                max-w-md
+                max-w-xs
                 text-sm
-                leading-7
-                text-[#6D7A73]
+                leading-6
+                text-white/35
               "
             >
-              We help startups, businesses, and brands build
-              beautiful, high-performing digital experiences
-              that create lasting impressions and deliver real
-              business results.
+              Web design, UI/UX and development for brands,
+              founders and businesses building what comes next.
             </p>
 
-            {/* Social */}
+            {/* Availability */}
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex items-center gap-2">
 
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
+              <span className="relative flex h-2 w-2">
 
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    className="
-                      group
-                      flex
-                      h-10
-                      items-center
-                      gap-2
-                      border
-                      border-white/[0.07]
-                      bg-[#070D0A]
-                      px-3.5
-                      text-xs
-                      text-[#69776F]
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                      hover:border-[#4C735D]/40
-                      hover:bg-[#0B1711]
-                      hover:text-[#B3C4BA]
-                    "
-                  >
-                    <Icon
-                      className="
-                        h-4
-                        w-4
-                        transition-transform
-                        duration-300
-                        group-hover:scale-110
-                      "
-                      strokeWidth={1.5}
-                    />
-
-                    <span>{social.name}</span>
-                  </a>
-                );
-              })}
-
-            </div>
-          </div>
-
-          {/* =================================================
-              COMPANY
-          ================================================= */}
-
-          <div>
-
-            <h3
-              className="
-                mb-6
-                text-[10px]
-                font-medium
-                uppercase
-                tracking-[0.25em]
-                text-[#789586]
-              "
-            >
-              Company
-            </h3>
-
-            <div className="space-y-4">
-
-              {companyLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
+                <span
                   className="
-                    group
-                    flex
-                    items-center
-                    gap-2
-                    text-sm
-                    text-[#68766F]
-                    transition-all
-                    duration-300
-                    hover:translate-x-1
-                    hover:text-[#C1CEC7]
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-white/20
                   "
-                >
-                  <span
-                    className="
-                      h-px
-                      w-0
-                      bg-[#65927A]
-                      transition-all
-                      duration-300
-                      group-hover:w-3
-                    "
-                  />
-
-                  {link.label}
-                </Link>
-              ))}
-
-            </div>
-          </div>
-
-          {/* =================================================
-              SERVICES
-          ================================================= */}
-
-          <div>
-
-            <h3
-              className="
-                mb-6
-                text-[10px]
-                font-medium
-                uppercase
-                tracking-[0.25em]
-                text-[#789586]
-              "
-            >
-              Services
-            </h3>
-
-            <div className="space-y-4">
-
-              {services.map((service) => (
-                <div
-                  key={service}
-                  className="
-                    group
-                    flex
-                    items-center
-                    gap-2
-                    text-sm
-                    text-[#68766F]
-                    transition-colors
-                    duration-300
-                    hover:text-[#C1CEC7]
-                  "
-                >
-                  <span
-                    className="
-                      h-1
-                      w-1
-                      rounded-full
-                      bg-[#426650]
-                      transition-all
-                      duration-300
-                      group-hover:bg-[#709A84]
-                      group-hover:shadow-[0_0_8px_rgba(112,154,132,0.7)]
-                    "
-                  />
-
-                  {service}
-                </div>
-              ))}
-
-            </div>
-          </div>
-
-          {/* =================================================
-              CONTACT
-          ================================================= */}
-
-          <div>
-
-            <h3
-              className="
-                mb-6
-                text-[10px]
-                font-medium
-                uppercase
-                tracking-[0.25em]
-                text-[#789586]
-              "
-            >
-              Contact
-            </h3>
-
-            <div className="space-y-5 text-sm">
-
-              {/* Location */}
-
-              <div className="flex items-start gap-3">
-
-                <MapPin
-                  className="
-                    mt-0.5
-                    h-4
-                    w-4
-                    shrink-0
-                    text-[#527B64]
-                  "
-                  strokeWidth={1.5}
                 />
 
-                <p className="leading-6 text-[#68766F]">
-                  Ahmedabad,
-                  <br />
-                  Gujarat, India
-                </p>
+                <span
+                  className="
+                    relative
+                    h-2
+                    w-2
+                    rounded-full
+                    bg-white/70
+                  "
+                />
 
-              </div>
+              </span>
 
-              {/* Email */}
+              <span
+                className="
+                  text-[9px]
+                  uppercase
+                  tracking-[0.2em]
+                  text-white/35
+                "
+              >
+                Available for select projects
+              </span>
+
+            </div>
+          </div>
+
+          {/* =================================================
+              EXPLORE
+          ================================================== */}
+
+          <div>
+
+            <span
+              className="
+                text-[9px]
+                uppercase
+                tracking-[0.3em]
+                text-white/30
+              "
+            >
+              Explore
+            </span>
+
+            <div className="mt-6 flex flex-col gap-4">
+
+              <Link
+                to="/"
+                className="
+                  w-fit
+                  text-sm
+                  text-white/55
+                  transition-colors
+                  duration-300
+                  hover:text-white
+                "
+              >
+                Home
+              </Link>
+
+              <Link
+                to="/studio"
+                className="
+                  w-fit
+                  text-sm
+                  text-white/55
+                  transition-colors
+                  duration-300
+                  hover:text-white
+                "
+              >
+                Studio
+              </Link>
+
+              <Link
+                to="/about"
+                className="
+                  w-fit
+                  text-sm
+                  text-white/55
+                  transition-colors
+                  duration-300
+                  hover:text-white
+                "
+              >
+                About
+              </Link>
+
+              <Link
+                to="/services"
+                className="
+                  w-fit
+                  text-sm
+                  text-white/55
+                  transition-colors
+                  duration-300
+                  hover:text-white
+                "
+              >
+                Services
+              </Link>
+
+              <Link
+                to="/journal"
+                className="
+                  w-fit
+                  text-sm
+                  text-white/55
+                  transition-colors
+                  duration-300
+                  hover:text-white
+                "
+              >
+                Journal
+              </Link>
+
+            </div>
+          </div>
+
+          {/* =================================================
+              CONNECT
+          ================================================== */}
+
+          <div className="mt-12 md:mt-0">
+
+            <span
+              className="
+                text-[9px]
+                uppercase
+                tracking-[0.3em]
+                text-white/30
+              "
+            >
+              Connect
+            </span>
+
+            <div className="mt-6 flex flex-col gap-4">
+
+              {/* EMAIL */}
 
               <a
-                href="mailto:layoutly5@gmail.com"
+                href="mailto:hello@layoutly.in"
                 className="
                   group
                   flex
+                  w-fit
                   items-center
                   gap-3
-                  text-[#68766F]
+                  text-sm
+                  text-white/55
                   transition-colors
                   duration-300
-                  hover:text-[#B7C9BF]
+                  hover:text-white
                 "
               >
                 <Mail
                   className="
                     h-4
                     w-4
-                    text-[#527B64]
-                    transition-transform
-                    duration-300
-                    group-hover:scale-110
+                    text-white/30
+                    transition-colors
+                    group-hover:text-white/70
                   "
-                  strokeWidth={1.5}
                 />
 
-                layoutly5@gmail.com
+                <span>
+                  Email
+                </span>
               </a>
 
-              {/* Phone */}
+              {/* INSTAGRAM */}
 
               <a
-                href="tel:+918734010298"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   group
                   flex
+                  w-fit
                   items-center
                   gap-3
-                  text-[#68766F]
+                  text-sm
+                  text-white/55
                   transition-colors
                   duration-300
-                  hover:text-[#B7C9BF]
+                  hover:text-white
                 "
               >
-                <Phone
+                <span
                   className="
+                    flex
                     h-4
                     w-4
-                    text-[#527B64]
-                    transition-transform
-                    duration-300
-                    group-hover:scale-110
+                    items-center
+                    justify-center
+                    text-[15px]
+                    leading-none
+                    text-white/30
+                    transition-colors
+                    group-hover:text-white/70
                   "
-                  strokeWidth={1.5}
-                />
+                >
+                  ◎
+                </span>
 
-                +91 8734010298
+                <span>
+                  Instagram
+                </span>
               </a>
 
-              {/* CTA */}
+              {/* LINKEDIN */}
 
-              <Link
-                to="/contact"
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   group
-                  mt-2
-                  inline-flex
+                  flex
+                  w-fit
                   items-center
-                  gap-2
-                  border
-                  border-[#456A55]/30
-                  bg-[#0A1710]
-                  px-4
-                  py-3
-                  text-xs
-                  font-medium
-                  text-[#9BB0A5]
-                  transition-all
+                  gap-3
+                  text-sm
+                  text-white/55
+                  transition-colors
                   duration-300
-                  hover:border-[#69927B]/50
-                  hover:bg-[#10251A]
-                  hover:text-[#D6E1DB]
+                  hover:text-white
                 "
               >
-                Get in Touch
-
-                <ArrowUpRight
+                <span
                   className="
-                    h-3.5
-                    w-3.5
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                    group-hover:-translate-y-1
+                    flex
+                    h-4
+                    w-4
+                    items-center
+                    justify-center
+                    text-[10px]
+                    font-medium
+                    text-white/30
+                    transition-colors
+                    group-hover:text-white/70
                   "
-                />
-              </Link>
+                >
+                  in
+                </span>
+
+                <span>
+                  LinkedIn
+                </span>
+              </a>
 
             </div>
           </div>
-        </div>
 
-        {/* =================================================
-            DIVIDER
-        ================================================= */}
+          {/* =================================================
+              START PROJECT
+          ================================================== */}
 
-        <div
+          <div className="mt-12 md:mt-0">
+
+            <span
+              className="
+                text-[9px]
+                uppercase
+                tracking-[0.3em]
+                text-white/30
+              "
+            >
+              Start a project
+            </span>
+
+            <Link
+              to="/contact"
+              className="
+                group
+                mt-6
+                flex
+                w-fit
+                items-center
+                gap-2
+                text-sm
+                text-white
+              "
+            >
+              <span>
+                Let's talk
+              </span>
+
+              <ArrowUpRight
+                className="
+                  h-4
+                  w-4
+                  text-white/50
+                  transition-transform
+                  duration-300
+                  group-hover:-translate-y-1
+                  group-hover:translate-x-1
+                "
+              />
+            </Link>
+
+            <p
+              className="
+                mt-3
+                text-xs
+                leading-5
+                text-white/30
+              "
+            >
+              New projects, collaborations
+              <br />
+              and digital experiences.
+            </p>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            HUGE WORDMARK
+        ==================================================== */}
+
+        <section
           className="
             relative
-            mt-16
-            h-px
-            bg-gradient-to-r
-            from-transparent
-            via-white/[0.08]
-            to-transparent
+            overflow-hidden
+            py-10
+            md:py-14
           "
         >
+
           <div
             className="
-              absolute
-              left-1/2
-              top-1/2
-              h-1
-              w-1
-              -translate-x-1/2
-              -translate-y-1/2
-              rounded-full
-              bg-[#5C8B72]
-              shadow-[0_0_12px_rgba(92,139,114,0.8)]
+              select-none
+              whitespace-nowrap
+              text-center
+              text-[19vw]
+              font-normal
+              leading-none
+              tracking-[-0.08em]
+              text-white/[0.035]
             "
-          />
-        </div>
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+            }}
+          >
+            Layoutly
+          </div>
 
-        {/* =================================================
+        </section>
+
+        {/* ===================================================
             BOTTOM BAR
-        ================================================= */}
+        ==================================================== */}
 
-        <div
+        <section
           className="
             flex
             flex-col
-            items-center
-            justify-between
-            gap-5
-            pt-7
+            gap-6
+            border-t
+            border-white/[0.08]
+            py-6
             md:flex-row
+            md:items-center
+            md:justify-between
           "
         >
 
-          <p
+          {/* COPYRIGHT */}
+
+          <div
             className="
-              text-[11px]
-              tracking-wide
-              text-[#505D56]
+              text-[10px]
+              uppercase
+              tracking-[0.18em]
+              text-white/25
             "
           >
             © {new Date().getFullYear()} Layoutly.
             All rights reserved.
-          </p>
-
-          <div className="flex items-center gap-6">
-
-            <Link
-              to="/privacy"
-              className="
-                text-[11px]
-                text-[#505D56]
-                transition-colors
-                duration-300
-                hover:text-[#9AAF9F]
-              "
-            >
-              Privacy Policy
-            </Link>
-
-            <span className="h-3 w-px bg-white/[0.08]" />
-
-            <Link
-              to="/terms"
-              className="
-                text-[11px]
-                text-[#505D56]
-                transition-colors
-                duration-300
-                hover:text-[#9AAF9F]
-              "
-            >
-              Terms & Conditions
-            </Link>
-
           </div>
-        </div>
 
-        {/* =================================================
-            STATUS
-        ================================================= */}
+          {/* CENTER */}
 
-        <div
-          className="
-            mt-8
-            flex
-            items-center
-            justify-center
-            gap-3
-            text-[8px]
-            uppercase
-            tracking-[0.25em]
-            text-[#3F4D45]
-          "
-        >
-          <span className="flex items-center gap-2">
+          <div
+            className="
+              text-[10px]
+              uppercase
+              tracking-[0.18em]
+              text-white/20
+            "
+          >
+            Designed & built with intention.
+          </div>
+
+          {/* BACK TO TOP */}
+
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="
+              group
+              flex
+              items-center
+              gap-3
+              text-[10px]
+              uppercase
+              tracking-[0.18em]
+              text-white/35
+              transition-colors
+              duration-300
+              hover:text-white
+            "
+          >
+            <span>
+              Back to top
+            </span>
 
             <span
               className="
-                h-1.5
-                w-1.5
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
                 rounded-full
-                bg-[#5C8B72]
-                shadow-[0_0_8px_rgba(92,139,114,0.8)]
+                border
+                border-white/15
+                transition-all
+                duration-300
+                group-hover:border-white/35
+                group-hover:bg-white/[0.06]
               "
-            />
+            >
+              <ArrowUp
+                className="
+                  h-3.5
+                  w-3.5
+                  transition-transform
+                  duration-300
+                  group-hover:-translate-y-0.5
+                "
+              />
+            </span>
+          </button>
 
-            Systems online
-
-          </span>
-
-          <span className="h-3 w-px bg-white/[0.07]" />
-
-          <span>Built with intention</span>
-        </div>
-      </div>
-
-      {/* =====================================================
-          ANIMATED BOTTOM LINE
-      ====================================================== */}
-
-      <div className="absolute bottom-0 left-0 right-0 h-px overflow-hidden">
-
-        <div
-          className="
-            h-full
-            w-1/3
-            animate-[footerLine_6s_linear_infinite]
-            bg-gradient-to-r
-            from-transparent
-            via-[#5C8C73]
-            to-transparent
-          "
-        />
+        </section>
 
       </div>
-
-      <style>
-        {`
-          @keyframes footerLine {
-            0% {
-              transform: translateX(-100%);
-            }
-
-            100% {
-              transform: translateX(400%);
-            }
-          }
-        `}
-      </style>
-
     </footer>
   );
 };
